@@ -3,24 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>VIBER CLASH · Cyber Quant Battle Arena</title>
+  <title>VIBER GROVE · Mythic Forest Arena</title>
   <link rel="icon" href="logo.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700;900&family=JetBrains+Mono:wght@400;600;800&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0d0f;
-      --panel: #101519;
-      --panel-border: rgba(0, 255, 170, 0.2);
-      --neon-green: #00ffa3;
-      --neon-cyan: #00e5ff;
-      --neon-red: #ff3366;
-      --neon-gold: #ffd200;
-      --neon-purple: #b537f2;
-      --font-display: 'Chakra Petch', sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
+      --bg-forest: #060e0a;
+      --bg-surface: rgba(12, 24, 18, 0.85);
+      --border-moss: rgba(52, 211, 153, 0.28);
+      --border-wood: rgba(180, 130, 80, 0.3);
+      
+      --emerald-glow: #10b981;
+      --emerald-bright: #34d399;
+      --firefly-gold: #fbbf24;
+      --amber-warm: #f59e0b;
+      --mystic-lavender: #c084fc;
+      --blight-crimson: #f43f5e;
+      --moss-text: #a7f3d0;
+      
+      --font-title: 'Cinzel', serif;
       --font-body: 'Outfit', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
     }
 
     * {
@@ -32,8 +37,8 @@
     }
 
     body {
-      background-color: var(--bg);
-      color: #e5f0f5;
+      background-color: var(--bg-forest);
+      color: #e6f4ea;
       font-family: var(--font-body);
       overflow: hidden;
       width: 100vw;
@@ -42,60 +47,74 @@
       flex-direction: column;
     }
 
-    /* TOP BAR */
+    /* TOP BAR - ENCHANTED WOODEN GLASS */
     header {
-      height: 60px;
-      background: rgba(16, 21, 25, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--panel-border);
+      height: 64px;
+      background: linear-gradient(180deg, rgba(8, 17, 12, 0.95) 0%, rgba(13, 27, 20, 0.85) 100%);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-moss);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 20px;
+      padding: 0 24px;
       z-index: 100;
       flex-shrink: 0;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       cursor: pointer;
     }
 
     .brand img {
-      width: 38px;
-      height: 38px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
-      border: 2px solid var(--neon-green);
-      box-shadow: 0 0 10px rgba(0, 255, 163, 0.4);
+      border: 2px solid var(--emerald-bright);
+      box-shadow: 0 0 15px rgba(52, 211, 153, 0.45);
+      object-fit: cover;
     }
 
     .brand-title {
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: 1.25rem;
-      letter-spacing: 1.5px;
-      color: #fff;
+      font-family: var(--font-title);
+      font-weight: 800;
+      font-size: 1.35rem;
+      letter-spacing: 2px;
+      color: #f0fdf4;
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
     .brand-title span {
-      color: var(--neon-green);
-      text-shadow: 0 0 8px rgba(0, 255, 163, 0.5);
+      color: var(--emerald-bright);
+      text-shadow: 0 0 12px rgba(52, 211, 153, 0.5);
     }
 
     .badge-testnet {
       font-family: var(--font-mono);
-      font-size: 0.65rem;
-      background: rgba(0, 229, 255, 0.15);
-      color: var(--neon-cyan);
-      border: 1px solid rgba(0, 229, 255, 0.4);
-      padding: 2px 8px;
-      border-radius: 4px;
+      font-size: 0.68rem;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--moss-text);
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      padding: 3px 10px;
+      border-radius: 20px;
       letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .badge-testnet::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--emerald-bright);
+      border-radius: 50%;
+      box-shadow: 0 0 6px var(--emerald-bright);
     }
 
     .header-actions {
@@ -105,64 +124,68 @@
     }
 
     .btn {
-      font-family: var(--font-display);
+      font-family: var(--font-title);
       font-weight: 700;
-      font-size: 0.85rem;
-      letter-spacing: 0.5px;
-      padding: 8px 16px;
-      border-radius: 6px;
+      font-size: 0.82rem;
+      letter-spacing: 1px;
+      padding: 9px 18px;
+      border-radius: 8px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       text-decoration: none;
       border: none;
       outline: none;
     }
 
     .btn-outline {
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #d0dbe2;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      color: #d1fae5;
     }
 
     .btn-outline:hover {
-      border-color: var(--neon-cyan);
-      color: var(--neon-cyan);
-      box-shadow: 0 0 12px rgba(0, 229, 255, 0.25);
+      border-color: var(--emerald-bright);
+      color: #fff;
+      box-shadow: 0 0 15px rgba(52, 211, 153, 0.3);
+      background: rgba(16, 185, 129, 0.16);
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, #00ffa3 0%, #00b374 100%);
-      color: #06150e;
-      box-shadow: 0 0 14px rgba(0, 255, 163, 0.35);
+    .btn-forest {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      color: #f0fdf4;
+      border: 1px solid rgba(52, 211, 153, 0.4);
+      box-shadow: 0 0 16px rgba(5, 150, 105, 0.35);
     }
 
-    .btn-primary:hover {
+    .btn-forest:hover {
       transform: translateY(-1px);
-      box-shadow: 0 0 20px rgba(0, 255, 163, 0.6);
+      box-shadow: 0 0 24px rgba(52, 211, 153, 0.5);
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
     }
 
     .btn-vibe {
-      background: linear-gradient(135deg, #ff007a 0%, #7928ca 100%);
-      color: #fff;
-      box-shadow: 0 0 14px rgba(255, 0, 122, 0.35);
+      background: linear-gradient(135deg, #b45309 0%, #d97706 100%);
+      color: #fffbeb;
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.35);
     }
 
     .btn-vibe:hover {
-      box-shadow: 0 0 20px rgba(255, 0, 122, 0.6);
+      box-shadow: 0 0 22px rgba(251, 191, 36, 0.55);
       transform: translateY(-1px);
     }
 
-    /* MAIN VIEWPORT */
+    /* GAME CANVAS VIEWPORT */
     #game-container {
       position: relative;
       flex: 1;
       width: 100%;
-      height: calc(100vh - 60px);
+      height: calc(100vh - 64px);
       overflow: hidden;
-      background: #07090b;
+      background: #040906;
     }
 
     canvas {
@@ -171,7 +194,7 @@
       height: 100%;
     }
 
-    /* HUD OVERLAY */
+    /* HUD OVERLAY - MOSS & STONE */
     #hud {
       position: absolute;
       top: 0;
@@ -179,7 +202,7 @@
       right: 0;
       bottom: 0;
       pointer-events: none;
-      padding: 20px;
+      padding: 22px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -192,45 +215,46 @@
     }
 
     .stat-card {
-      background: rgba(16, 21, 25, 0.7);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      padding: 10px 16px;
+      background: rgba(10, 22, 16, 0.78);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-moss);
+      border-radius: 12px;
+      padding: 12px 18px;
       pointer-events: auto;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
     }
 
     .stat-label {
       font-family: var(--font-mono);
       font-size: 0.65rem;
-      color: #8c9fa8;
+      color: #6ee7b7;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
     }
 
     .stat-val {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #fff;
+      font-family: var(--font-title);
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #f0fdf4;
     }
 
     .health-bar-container {
       width: 220px;
       height: 12px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 6px;
+      background: rgba(4, 15, 9, 0.6);
+      border-radius: 8px;
       overflow: hidden;
       margin-top: 6px;
-      border: 1px solid rgba(0, 255, 163, 0.3);
+      border: 1px solid rgba(52, 211, 153, 0.3);
     }
 
     .health-bar {
       height: 100%;
       width: 100%;
-      background: linear-gradient(90deg, #00ffa3, #00e5ff);
+      background: linear-gradient(90deg, #10b981, #34d399, #fbbf24);
       transition: width 0.15s ease-out;
-      box-shadow: 0 0 10px var(--neon-green);
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.7);
     }
 
     .curve-widget {
@@ -240,28 +264,29 @@
     }
 
     .curve-progress-bar {
-      width: 180px;
+      width: 190px;
       height: 8px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 4px;
+      background: rgba(4, 15, 9, 0.6);
+      border-radius: 6px;
       overflow: hidden;
       margin-top: 6px;
+      border: 1px solid rgba(251, 191, 36, 0.3);
     }
 
     .curve-fill {
       height: 100%;
-      width: 25%;
-      background: linear-gradient(90deg, #ffd200, #ff007a);
-      box-shadow: 0 0 8px #ff007a;
+      width: 10%;
+      background: linear-gradient(90deg, #f59e0b, #fbbf24);
+      box-shadow: 0 0 10px rgba(251, 191, 36, 0.6);
       transition: width 0.2s;
     }
 
-    /* WAVE ANNOUNCEMENT */
+    /* WAVE BANNER */
     #wave-banner {
       position: absolute;
       top: 35%;
       left: 50%;
-      transform: translate(-50%, -50%) scale(0.8);
+      transform: translate(-50%, -50%) scale(0.85);
       opacity: 0;
       pointer-events: none;
       text-align: center;
@@ -275,36 +300,37 @@
     }
 
     #wave-banner h2 {
-      font-family: var(--font-display);
-      font-size: 3rem;
+      font-family: var(--font-title);
+      font-size: 3.2rem;
       font-weight: 900;
-      color: var(--neon-cyan);
-      text-shadow: 0 0 25px rgba(0, 229, 255, 0.8);
-      letter-spacing: 3px;
+      color: #f0fdf4;
+      text-shadow: 0 0 25px rgba(52, 211, 153, 0.8), 0 0 50px rgba(16, 185, 129, 0.4);
+      letter-spacing: 4px;
     }
 
     #wave-banner p {
       font-family: var(--font-mono);
       font-size: 1rem;
-      color: #ffd200;
-      margin-top: 4px;
+      color: var(--firefly-gold);
+      margin-top: 6px;
+      letter-spacing: 1.5px;
     }
 
-    /* OVERLAYS (START / GAME OVER / MODAL) */
+    /* OVERLAYS - ENCHANTED WOODLAND SANCTUARY */
     .overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(6, 9, 11, 0.85);
-      backdrop-filter: blur(12px);
+      background: radial-gradient(circle at center, rgba(6, 17, 11, 0.85) 0%, rgba(2, 8, 4, 0.94) 100%);
+      backdrop-filter: blur(14px);
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 80;
       opacity: 1;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.35s ease;
     }
 
     .overlay.hidden {
@@ -313,71 +339,74 @@
     }
 
     .card-modal {
-      background: #101519;
-      border: 1px solid var(--neon-green);
-      box-shadow: 0 0 35px rgba(0, 255, 163, 0.2);
-      border-radius: 14px;
-      max-width: 520px;
+      background: linear-gradient(170deg, rgba(14, 30, 22, 0.95) 0%, rgba(8, 18, 13, 0.98) 100%);
+      border: 1px solid rgba(52, 211, 153, 0.4);
+      box-shadow: 0 0 45px rgba(16, 185, 129, 0.25), 0 20px 40px rgba(0, 0, 0, 0.8);
+      border-radius: 20px;
+      max-width: 540px;
       width: 90%;
-      padding: 32px;
+      padding: 36px;
       text-align: center;
       position: relative;
     }
 
     .modal-hero-img {
-      width: 100px;
-      height: 100px;
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
-      border: 3px solid var(--neon-green);
-      margin: 0 auto 16px;
-      box-shadow: 0 0 20px rgba(0, 255, 163, 0.4);
+      border: 3px solid var(--emerald-bright);
+      margin: 0 auto 18px;
+      box-shadow: 0 0 25px rgba(52, 211, 153, 0.5), inset 0 0 15px rgba(0, 0, 0, 0.5);
       display: block;
+      object-fit: cover;
     }
 
     .card-modal h1 {
-      font-family: var(--font-display);
-      font-size: 2.2rem;
+      font-family: var(--font-title);
+      font-size: 2.3rem;
       font-weight: 900;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       margin-bottom: 8px;
-      color: #fff;
+      color: #f0fdf4;
+      text-shadow: 0 0 15px rgba(52, 211, 153, 0.4);
     }
 
     .card-modal p {
-      font-size: 0.95rem;
-      color: #9cb1bc;
-      line-height: 1.5;
+      font-size: 0.98rem;
+      color: #a7f3d0;
+      line-height: 1.6;
       margin-bottom: 24px;
     }
 
     .controls-hint {
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      padding: 12px;
+      background: rgba(4, 15, 9, 0.6);
+      border: 1px solid rgba(52, 211, 153, 0.2);
+      border-radius: 12px;
+      padding: 14px;
       font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--neon-cyan);
-      margin-bottom: 24px;
+      font-size: 0.8rem;
+      color: #d1fae5;
+      margin-bottom: 26px;
       text-align: left;
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
     .leaderboard-list {
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 8px;
+      background: rgba(4, 15, 9, 0.5);
+      border-radius: 10px;
       padding: 12px;
-      margin-bottom: 20px;
-      max-height: 150px;
+      margin-bottom: 22px;
+      max-height: 160px;
       overflow-y: auto;
+      border: 1px solid rgba(52, 211, 153, 0.15);
     }
 
     .leaderboard-row {
       display: flex;
       justify-content: space-between;
-      padding: 6px 10px;
+      padding: 7px 12px;
       font-family: var(--font-mono);
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
@@ -386,11 +415,11 @@
     }
 
     .leaderboard-row .rank {
-      color: var(--neon-gold);
+      color: var(--firefly-gold);
       font-weight: bold;
     }
 
-    /* VIBE LAUNCH POPUP */
+    /* TOKEN LAUNCHPAD MODAL */
     #launch-info-modal {
       display: none;
       position: fixed;
@@ -399,13 +428,13 @@
       transform: translate(-50%, -50%);
       width: 90%;
       max-width: 580px;
-      background: #11161b;
-      border: 1px solid var(--neon-cyan);
-      box-shadow: 0 0 40px rgba(0, 229, 255, 0.3);
-      border-radius: 12px;
-      padding: 28px;
+      background: linear-gradient(170deg, #0d2217 0%, #07150e 100%);
+      border: 1px solid var(--emerald-bright);
+      box-shadow: 0 0 50px rgba(16, 185, 129, 0.35);
+      border-radius: 18px;
+      padding: 30px;
       z-index: 200;
-      color: #e5f0f5;
+      color: #e6f4ea;
     }
 
     #launch-info-modal.active {
@@ -414,10 +443,10 @@
 
     .modal-close {
       position: absolute;
-      top: 16px;
-      right: 18px;
-      font-size: 1.5rem;
-      color: #798d96;
+      top: 18px;
+      right: 22px;
+      font-size: 1.6rem;
+      color: #6ee7b7;
       cursor: pointer;
     }
 
@@ -428,27 +457,28 @@
     .modal-step {
       display: flex;
       gap: 14px;
-      margin-bottom: 14px;
+      margin-bottom: 15px;
       align-items: flex-start;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
+      line-height: 1.5;
     }
 
     .step-num {
-      width: 26px;
-      height: 26px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
-      background: var(--neon-cyan);
-      color: #051419;
+      background: var(--emerald-bright);
+      color: #042f1a;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
       flex-shrink: 0;
       font-family: var(--font-mono);
-      font-size: 0.8rem;
+      font-size: 0.85rem;
     }
 
-    /* MOBILE JOYSTICK */
+    /* MOBILE CONTROLS */
     #mobile-controls {
       display: none;
       position: absolute;
@@ -465,36 +495,36 @@
       width: 76px;
       height: 76px;
       border-radius: 50%;
-      background: rgba(0, 255, 163, 0.2);
-      border: 2px solid var(--neon-green);
-      color: #fff;
+      background: rgba(16, 185, 129, 0.22);
+      border: 2px solid var(--emerald-bright);
+      color: #f0fdf4;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: var(--font-display);
+      font-family: var(--font-title);
       font-weight: 900;
       font-size: 0.9rem;
       pointer-events: auto;
       touch-action: none;
-      box-shadow: 0 0 15px rgba(0, 255, 163, 0.3);
+      box-shadow: 0 0 18px rgba(16, 185, 129, 0.35);
     }
 
     @media (max-width: 768px) {
       header {
-        padding: 0 12px;
+        padding: 0 14px;
       }
       .brand-title {
-        font-size: 1rem;
+        font-size: 1.05rem;
       }
       .brand img {
-        width: 30px;
-        height: 30px;
+        width: 34px;
+        height: 34px;
       }
       .badge-testnet {
         display: none;
       }
       .health-bar-container {
-        width: 130px;
+        width: 140px;
       }
       .curve-progress-bar {
         width: 110px;
@@ -510,20 +540,20 @@
   <!-- TOP BAR -->
   <header>
     <div class="brand" onclick="window.open('https://testnet.vibevibe.fun/', '_blank')">
-      <img src="logo.jpg" alt="Viber Clash Logo">
-      <div class="brand-title">VIBER <span>CLASH</span></div>
+      <img src="logo.jpg" alt="Viber Grove Mythic Spirit">
+      <div class="brand-title">VIBER <span>GROVE</span></div>
       <span class="badge-testnet">Robinhood L2 · 46630</span>
     </div>
 
     <div class="header-actions">
       <button class="btn btn-outline" id="btn-token-info" onclick="toggleTokenModal(true)">
-        🪙 Token Launchpad
+        🌿 Token Launchpad
       </button>
       <a href="https://testnet.vibevibe.fun/" target="_blank" class="btn btn-vibe">
         🔥 Trade on vibe/vibe
       </a>
-      <button class="btn btn-primary" id="btn-wallet" onclick="handleWalletConnect()">
-        ⚡ Connect Wallet
+      <button class="btn btn-forest" id="btn-wallet" onclick="handleWalletConnect()">
+        ✨ Connect Wallet
       </button>
     </div>
   </header>
@@ -535,31 +565,31 @@
     <!-- HUD OVERLAY -->
     <div id="hud">
       <div class="hud-top">
-        <!-- QUANT STATUS -->
+        <!-- GUARDIAN HP -->
         <div class="stat-card">
-          <div class="stat-label">VIBER QUANT HP</div>
+          <div class="stat-label">FOREST SPIRIT ESSENCE</div>
           <div class="health-bar-container">
             <div id="hp-bar" class="health-bar"></div>
           </div>
           <div style="display:flex; justify-content:space-between; margin-top:5px; font-family:var(--font-mono); font-size:0.75rem;">
             <span id="hp-text">100 / 100</span>
-            <span id="shield-text" style="color:var(--neon-cyan)">🛡️ 100%</span>
+            <span id="shield-text" style="color:var(--firefly-gold)">🛡️ 100% BARKSKIN</span>
           </div>
         </div>
 
         <!-- SCORE & WAVE -->
         <div class="stat-card" style="text-align: center;">
-          <div class="stat-label">ARENA BOUNTY</div>
-          <div class="stat-val" id="score-val" style="color:var(--neon-green)">0</div>
-          <div style="font-family:var(--font-mono); font-size:0.75rem; color:#ffd200;">
-            WAVE <span id="wave-num">1</span> · MULTIPLIER <span id="combo-num">x1.0</span>
+          <div class="stat-label">SACRED HARVEST</div>
+          <div class="stat-val" id="score-val" style="color:var(--emerald-bright)">0</div>
+          <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--firefly-gold);">
+            CLEARING <span id="wave-num">1</span> · ESSENCE <span id="combo-num">x1.0</span>
           </div>
         </div>
 
-        <!-- BONDING CURVE PROGRESS -->
+        <!-- BONDING CURVE GRADUATION -->
         <div class="stat-card curve-widget">
-          <div class="stat-label">BONDING CURVE GRADUATION</div>
-          <div class="stat-val" id="curve-val" style="font-size:1.1rem; color:var(--neon-gold)">0.00 / 4.00 ETH</div>
+          <div class="stat-label">SACRED GROVE GRADUATION</div>
+          <div class="stat-val" id="curve-val" style="font-size:1.15rem; color:var(--firefly-gold)">0.00 / 4.00 ETH</div>
           <div class="curve-progress-bar">
             <div id="curve-fill" class="curve-fill"></div>
           </div>
@@ -568,32 +598,33 @@
 
       <!-- WAVE BANNER -->
       <div id="wave-banner">
-        <h2 id="wave-title">WAVE 1</h2>
-        <p id="wave-sub">BEAR BOTS INCOMING</p>
+        <h2 id="wave-title">CLEARING 1</h2>
+        <p id="wave-sub">BLIGHT SHADOWS APPROACH</p>
       </div>
 
       <!-- MOBILE CONTROLS -->
       <div id="mobile-controls">
         <div id="joystick-pad" class="touch-btn">MOVE</div>
-        <div id="fire-pad" class="touch-btn" style="border-color:var(--neon-cyan); background:rgba(0, 229, 255, 0.2);">BLAST</div>
+        <div id="fire-pad" class="touch-btn" style="border-color:var(--firefly-gold); background:rgba(251, 191, 36, 0.2);">SPORE</div>
       </div>
     </div>
 
     <!-- START SCREEN -->
     <div id="start-overlay" class="overlay">
       <div class="card-modal">
-        <img src="logo.jpg" alt="Viber Clash" class="modal-hero-img">
-        <h1>VIBER CLASH</h1>
-        <p>Piloting AI Quant Chef Unit. Obliterate Bear Bots, Rogue Liquidators, and MEV Sandwiches in the Robinhood Chain arena!</p>
+        <img src="logo.jpg" alt="Mythic Forest Spirit" class="modal-hero-img">
+        <h1>VIBER GROVE</h1>
+        <p>You are the Mythic Forest Guardian. Cleanse corrupted shadow beasts, blight swarms, and rogue algorithms invading the ancient sanctuary.</p>
         
         <div class="controls-hint">
-          ⌨️ <b>DESKTOP:</b> [W,A,S,D] or [Arrows] to Move · [Mouse] to Aim & Auto-Shoot<br>
-          ⚡ <b>SPECIAL:</b> [SPACEBAR] for Quant EMP Blast<br>
-          📱 <b>TOUCH:</b> Left drag to move, right button to blast!
+          🍃 <b>MOVEMENT:</b> [W,A,S,D] or [Arrow Keys] to glide through the trees<br>
+          ✨ <b>AIM & CAST:</b> Move [Mouse] to aim · Casts glowing emerald spore blasts<br>
+          🌸 <b>SYLVAN BURST:</b> Press [SPACEBAR] to unleash Ancient Rune Nova<br>
+          📱 <b>MOBILE:</b> Drag left circle to move, right button to release spores!
         </div>
 
-        <button class="btn btn-primary" style="width:100%; padding:14px; font-size:1.1rem;" onclick="startGame()">
-          ⚔️ ENTER THE ARENA
+        <button class="btn btn-forest" style="width:100%; padding:15px; font-size:1.15rem;" onclick="startGame()">
+          🌿 ENTER THE SACRED GROVE
         </button>
       </div>
     </div>
@@ -601,13 +632,13 @@
     <!-- GAME OVER SCREEN -->
     <div id="gameover-overlay" class="overlay hidden">
       <div class="card-modal">
-        <h1 style="color:var(--neon-red)">POSITION LIQUIDATED!</h1>
-        <p>Your Viber Quant Bot went down in battle. Harvested yield recorded on Robinhood Testnet.</p>
+        <h1 style="color:var(--blight-crimson)">SPIRIT DISSOLVED</h1>
+        <p>The blight has overtaken the grove. Your sacred essence was sealed into Robinhood Chain testnet.</p>
         
-        <div class="stat-card" style="margin-bottom: 20px;">
-          <div class="stat-label">FINAL ARENA SCORE</div>
-          <div class="stat-val" id="final-score" style="color:var(--neon-green)">0</div>
-          <div style="font-family:var(--font-mono); font-size:0.8rem; color:#8c9fa8; margin-top:4px;">
+        <div class="stat-card" style="margin-bottom: 22px;">
+          <div class="stat-label">TOTAL SACRED HARVEST</div>
+          <div class="stat-val" id="final-score" style="color:var(--emerald-bright)">0</div>
+          <div style="font-family:var(--font-mono); font-size:0.8rem; color:#a7f3d0; margin-top:5px;">
             TESTNET ETH REWARD CLAIMABLE ON VIBE/VIBE
           </div>
         </div>
@@ -617,11 +648,11 @@
         </div>
 
         <div style="display:flex; gap:12px;">
-          <button class="btn btn-primary" style="flex:1;" onclick="restartGame()">
-            🔄 RE-ENTER ARENA
+          <button class="btn btn-forest" style="flex:1;" onclick="restartGame()">
+            🌱 REBORN SPIRIT
           </button>
           <a href="https://testnet.vibevibe.fun/" target="_blank" class="btn btn-vibe" style="flex:1;">
-            🚀 BUY $VCLASH
+            🌿 BUY $GROVE
           </a>
         </div>
       </div>
@@ -631,30 +662,30 @@
   <!-- TOKEN LAUNCHPAD MODAL -->
   <div id="launch-info-modal">
     <span class="modal-close" onclick="toggleTokenModal(false)">&times;</span>
-    <h2 style="font-family:var(--font-display); font-size:1.6rem; color:var(--neon-cyan); margin-bottom:12px;">
-      🚀 VIBER CLASH ($VCLASH) Token Blueprint
+    <h2 style="font-family:var(--font-title); font-size:1.6rem; color:var(--emerald-bright); margin-bottom:12px;">
+      🌿 VIBER GROVE ($GROVE) Token Launch
     </h2>
-    <p style="font-size:0.88rem; color:#9cb1bc; margin-bottom:18px;">
-      Created specifically for the <b>vibe/vibe Testnet Builder Leaderboard</b> (1.50% Product allocation) on Robinhood Chain L2.
+    <p style="font-size:0.88rem; color:#a7f3d0; margin-bottom:18px;">
+      Built for the <b>vibe/vibe Testnet Builder Leaderboard</b> (1.50% Product allocation) on Robinhood Chain L2.
     </p>
 
     <div class="modal-step">
       <div class="step-num">1</div>
       <div>
-        <b>Get Testnet ETH:</b> Connect to Robinhood Testnet (Chain ID <code>46630</code>) and request gas funds from <a href="https://faucet.testnet.chain.robinhood.com" target="_blank" style="color:var(--neon-green)">Robinhood Faucet</a>.
+        <b>Get Testnet ETH:</b> Connect to Robinhood Testnet (Chain ID <code>46630</code>) and request gas funds from <a href="https://faucet.testnet.chain.robinhood.com" target="_blank" style="color:var(--emerald-bright)">Robinhood Faucet</a>.
       </div>
     </div>
 
     <div class="modal-step">
       <div class="step-num">2</div>
       <div>
-        <b>Deploy Token on vibe/vibe:</b> Head to <a href="https://testnet.vibevibe.fun/" target="_blank" style="color:var(--neon-green)">testnet.vibevibe.fun</a>. Click <b>"Create Token"</b>.
-        <div style="background:rgba(0,0,0,0.4); padding:8px 12px; border-radius:6px; margin-top:6px; font-family:var(--font-mono); font-size:0.75rem;">
-          Name: <b>Viber Clash</b><br>
-          Ticker: <b>VCLASH</b><br>
-          Website: <i>(Your live game URL / GitHub Pages)</i><br>
+        <b>Deploy Token on vibe/vibe:</b> Head to <a href="https://testnet.vibevibe.fun/" target="_blank" style="color:var(--emerald-bright)">testnet.vibevibe.fun</a>. Click <b>"Create Token"</b>.
+        <div style="background:rgba(0,0,0,0.45); padding:10px 14px; border-radius:8px; margin-top:6px; font-family:var(--font-mono); font-size:0.75rem; border:1px solid rgba(52,211,153,0.2);">
+          Name: <b>Viber Grove</b><br>
+          Ticker: <b>GROVE</b><br>
+          Website: <b>https://stfu911.github.io/viber-clash/</b><br>
           Twitter: <i>(Your X handle)</i><br>
-          Logo: <i>(Use logo.jpg from this folder)</i>
+          Logo: <i>(Use logo.jpg from repository)</i>
         </div>
       </div>
     </div>
@@ -662,31 +693,27 @@
     <div class="modal-step">
       <div class="step-num">3</div>
       <div>
-        <b>Bonding Curve Target:</b> Collect 4.00 ETH testnet volume to reach 100% curve graduation to Uniswap V4.
+        <b>Bonding Curve Target:</b> Collect 4.00 ETH testnet volume to reach 100% curve graduation into Uniswap V4.
       </div>
     </div>
 
     <div style="margin-top:20px; text-align:center;">
-      <a href="https://testnet.vibevibe.fun/" target="_blank" class="btn btn-primary" style="width:100%;">
-        ⚡ Open vibe/vibe Token Launchpad
+      <a href="https://testnet.vibevibe.fun/" target="_blank" class="btn btn-forest" style="width:100%;">
+        🍃 Open vibe/vibe Token Launchpad
       </a>
     </div>
   </div>
 
   <script>
     /* ==========================================================
-       AUDIO SYNTHESIZER (Web Audio API - Zero External Dependencies)
+       MYSTICAL SOUND SYNTHESIZER (Flute, Chime, Stone Resonance)
        ========================================================== */
     const AudioCtx = window.AudioContext || window.webkitAudioContext;
     let audioCtx = null;
 
     function initAudio() {
-      if (!audioCtx) {
-        audioCtx = new AudioCtx();
-      }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
+      if (!audioCtx) audioCtx = new AudioCtx();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
     }
 
     function playSound(type) {
@@ -697,46 +724,51 @@
       osc.connect(gain);
       gain.connect(audioCtx.destination);
 
-      if (type === 'laser') {
-        osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(800, t);
-        osc.frequency.exponentialRampToValueAtTime(120, t + 0.12);
-        gain.gain.setValueAtTime(0.15, t);
+      if (type === 'spore') {
+        // Wooden wind flute tone
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(520, t);
+        osc.frequency.exponentialRampToValueAtTime(260, t + 0.14);
+        gain.gain.setValueAtTime(0.12, t);
+        gain.gain.linearRampToValueAtTime(0.01, t + 0.14);
+        osc.start(t);
+        osc.stop(t + 0.14);
+      } else if (type === 'hit') {
+        // Deep wood bark impact
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(160, t);
+        osc.frequency.exponentialRampToValueAtTime(50, t + 0.12);
+        gain.gain.setValueAtTime(0.25, t);
         gain.gain.linearRampToValueAtTime(0.01, t + 0.12);
         osc.start(t);
         osc.stop(t + 0.12);
-      } else if (type === 'hit') {
+      } else if (type === 'purify') {
+        // Ethereal bell resonance
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(320, t);
+        osc.frequency.exponentialRampToValueAtTime(70, t + 0.3);
+        gain.gain.setValueAtTime(0.28, t);
+        gain.gain.linearRampToValueAtTime(0.01, t + 0.3);
+        osc.start(t);
+        osc.stop(t + 0.3);
+      } else if (type === 'nectar') {
+        // High fairy chime
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(587.33, t); // D5
+        osc.frequency.linearRampToValueAtTime(880, t + 0.18); // A5
+        gain.gain.setValueAtTime(0.18, t);
+        gain.gain.linearRampToValueAtTime(0.01, t + 0.22);
+        osc.start(t);
+        osc.stop(t + 0.22);
+      } else if (type === 'nova') {
+        // Ancient Rune Wind Blast
         osc.type = 'triangle';
         osc.frequency.setValueAtTime(220, t);
-        osc.frequency.exponentialRampToValueAtTime(40, t + 0.1);
-        gain.gain.setValueAtTime(0.3, t);
-        gain.gain.linearRampToValueAtTime(0.01, t + 0.1);
-        osc.start(t);
-        osc.stop(t + 0.1);
-      } else if (type === 'explode') {
-        osc.type = 'square';
-        osc.frequency.setValueAtTime(150, t);
-        osc.frequency.exponentialRampToValueAtTime(30, t + 0.25);
+        osc.frequency.linearRampToValueAtTime(940, t + 0.4);
         gain.gain.setValueAtTime(0.35, t);
-        gain.gain.linearRampToValueAtTime(0.01, t + 0.25);
+        gain.gain.linearRampToValueAtTime(0.01, t + 0.45);
         osc.start(t);
-        osc.stop(t + 0.25);
-      } else if (type === 'powerup') {
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(440, t);
-        osc.frequency.linearRampToValueAtTime(880, t + 0.15);
-        gain.gain.setValueAtTime(0.2, t);
-        gain.gain.linearRampToValueAtTime(0.01, t + 0.2);
-        osc.start(t);
-        osc.stop(t + 0.2);
-      } else if (type === 'emp') {
-        osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(300, t);
-        osc.frequency.linearRampToValueAtTime(1200, t + 0.35);
-        gain.gain.setValueAtTime(0.4, t);
-        gain.gain.linearRampToValueAtTime(0.01, t + 0.4);
-        osc.start(t);
-        osc.stop(t + 0.4);
+        osc.stop(t + 0.45);
       }
     }
 
@@ -749,24 +781,41 @@
     let width = 0, height = 0;
     function resize() {
       width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight - 60;
+      height = canvas.height = window.innerHeight - 64;
     }
     window.addEventListener('resize', resize);
     resize();
 
-    let gameState = 'START'; // START, PLAYING, GAMEOVER
+    let gameState = 'START';
     let score = 0;
     let wave = 1;
     let combo = 1;
-    let comboTimer = 0;
     let curveEth = 0.00;
     const GRADUATION_TARGET = 4.00;
 
-    // Player
+    // Ambient floating fireflies in the forest
+    let fireflies = [];
+    function initFireflies() {
+      fireflies = [];
+      for (let i = 0; i < 45; i++) {
+        fireflies.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4 - 0.15,
+          radius: Math.random() * 2.5 + 1.2,
+          pulse: Math.random() * Math.PI * 2,
+          color: Math.random() > 0.3 ? '#fbbf24' : '#34d399'
+        });
+      }
+    }
+    initFireflies();
+
+    // Player Guardian
     const player = {
       x: 0,
       y: 0,
-      radius: 20,
+      radius: 22,
       speed: 5.5,
       hp: 100,
       maxHp: 100,
@@ -796,9 +845,7 @@
     /* INPUT LISTENERS */
     window.addEventListener('keydown', e => {
       keys[e.key.toLowerCase()] = true;
-      if (e.code === 'Space') {
-        triggerEMP();
-      }
+      if (e.code === 'Space') triggerNova();
     });
 
     window.addEventListener('keyup', e => {
@@ -847,7 +894,7 @@
     });
 
     firePad.addEventListener('touchstart', e => {
-      triggerEMP();
+      triggerNova();
       mouse.down = true;
       e.preventDefault();
     });
@@ -870,13 +917,13 @@
       const title = document.getElementById('wave-title');
       const sub = document.getElementById('wave-sub');
       
-      title.innerText = `WAVE ${wave}`;
+      title.innerText = `CLEARING ${wave}`;
       if (wave % 5 === 0) {
-        sub.innerText = '🚨 LIQUIDATION WHALE BOSS DETECTED 🚨';
-        sub.style.color = '#ff3366';
+        sub.innerText = '🚨 ANCIENT BLIGHT COLOSSUS AWAKENS 🚨';
+        sub.style.color = '#f43f5e';
       } else {
-        sub.innerText = `MARKET VOLATILITY: HIGH (${enemiesRemainingInWave} HOSTILES)`;
-        sub.style.color = '#ffd200';
+        sub.innerText = `SHADOW BEASTS ROAM (${enemiesRemainingInWave} REMAINING)`;
+        sub.style.color = '#fbbf24';
       }
 
       banner.classList.add('show');
@@ -887,7 +934,6 @@
       if (enemiesRemainingInWave <= 0) return;
       enemiesRemainingInWave--;
 
-      // Position along edge
       let ex, ey;
       if (Math.random() < 0.5) {
         ex = Math.random() < 0.5 ? -30 : width + 30;
@@ -903,67 +949,67 @@
       let enemy = {
         x: ex,
         y: ey,
-        radius: isBoss ? 45 : 16,
-        hp: isBoss ? 200 + wave * 40 : 25 + wave * 5,
-        maxHp: isBoss ? 200 + wave * 40 : 25 + wave * 5,
-        speed: isBoss ? 1.8 : 2.2 + Math.random() * 1.5,
+        radius: isBoss ? 48 : 17,
+        hp: isBoss ? 240 + wave * 45 : 28 + wave * 6,
+        maxHp: isBoss ? 240 + wave * 45 : 28 + wave * 6,
+        speed: isBoss ? 1.7 : 2.1 + Math.random() * 1.4,
         type: isBoss ? 'boss' : (typeRoll > 0.7 ? 'speeder' : 'standard'),
-        color: isBoss ? '#ff3366' : (typeRoll > 0.7 ? '#00e5ff' : '#ff9900')
+        color: isBoss ? '#f43f5e' : (typeRoll > 0.7 ? '#c084fc' : '#b45309')
       };
 
       if (enemy.type === 'speeder') {
-        enemy.radius = 12;
-        enemy.speed = 4.2;
-        enemy.hp = 15 + wave * 3;
+        enemy.radius = 13;
+        enemy.speed = 4.1;
+        enemy.hp = 18 + wave * 3;
       }
 
       enemies.push(enemy);
     }
 
     function spawnPickup(x, y) {
-      if (Math.random() > 0.28) return;
-      const types = ['heal', 'shield', 'emp', 'curve'];
+      if (Math.random() > 0.3) return;
+      const types = ['nectar', 'barkskin', 'nova', 'sap'];
       const picked = types[Math.floor(Math.random() * types.length)];
       pickups.push({
         x, y,
         type: picked,
-        radius: 12,
-        duration: 600, // 10s
+        radius: 13,
+        duration: 650,
         pulse: 0
       });
     }
 
-    function triggerEMP() {
+    function triggerNova() {
       if (!player.empReady || gameState !== 'PLAYING') return;
       player.empReady = false;
-      player.empCooldown = 360; // 6s
-      playSound('emp');
-      addShake(15, 12);
+      player.empCooldown = 340;
+      playSound('nova');
+      addShake(16, 12);
 
-      // Flash ring
-      for (let i = 0; i < 40; i++) {
-        const ang = (Math.PI * 2 / 40) * i;
+      // Expanding golden rune petals
+      for (let i = 0; i < 48; i++) {
+        const ang = (Math.PI * 2 / 48) * i;
         particles.push({
           x: player.x,
           y: player.y,
-          vx: Math.cos(ang) * 9,
-          vy: Math.sin(ang) * 9,
-          radius: 4,
-          color: '#00e5ff',
-          life: 30,
-          maxLife: 30
+          vx: Math.cos(ang) * 9.5,
+          vy: Math.sin(ang) * 9.5,
+          radius: 4.5,
+          color: i % 2 === 0 ? '#34d399' : '#fbbf24',
+          life: 35,
+          maxLife: 35
         });
       }
 
       // Damage all enemies
       enemies.forEach(e => {
-        e.hp -= 70;
-        createFloatingText(e.x, e.y, '⚡ CRIT -70', '#00e5ff');
+        e.hp -= 75;
+        createFloatingText(e.x, e.y, '🌸 PURIFIED -75', '#34d399');
       });
     }
 
     function createFloatingText(x, y, text, color) {
-      floatingTexts.push({ x, y, text, color, life: 40 });
+      floatingTexts.push({ x, y, text, color, life: 45 });
     }
 
     /* ==========================================================
@@ -972,6 +1018,17 @@
     let lastShootTime = 0;
 
     function update() {
+      // Ambient fireflies drift
+      fireflies.forEach(f => {
+        f.x += f.vx;
+        f.y += f.vy;
+        f.pulse += 0.05;
+        if (f.x < 0) f.x = width;
+        if (f.x > width) f.x = 0;
+        if (f.y < 0) f.y = height;
+        if (f.y > height) f.y = 0;
+      });
+
       if (gameState !== 'PLAYING') return;
 
       // Player Movement
@@ -989,26 +1046,41 @@
       player.x = Math.max(player.radius, Math.min(width - player.radius, player.x + dx * player.speed));
       player.y = Math.max(player.radius, Math.min(height - player.radius, player.y + dy * player.speed));
 
+      // Leaf trails
+      if (dx !== 0 || dy !== 0) {
+        if (Math.random() < 0.3) {
+          particles.push({
+            x: player.x,
+            y: player.y,
+            vx: -dx * 1.5 + (Math.random() - 0.5),
+            vy: -dy * 1.5 + (Math.random() - 0.5),
+            radius: Math.random() * 3 + 1.5,
+            color: '#10b981',
+            life: 20, maxLife: 20
+          });
+        }
+      }
+
       // Aiming
       player.angle = Math.atan2(mouse.y - player.y, mouse.x - player.x);
 
-      // Auto / Continuous Shooting
+      // Spore Blast Shooting
       const now = performance.now();
-      if ((mouse.down || keys[' ']) && now - lastShootTime > 130) {
+      if ((mouse.down || keys[' ']) && now - lastShootTime > 135) {
         lastShootTime = now;
-        playSound('laser');
+        playSound('spore');
         projectiles.push({
           x: player.x + Math.cos(player.angle) * player.radius,
           y: player.y + Math.sin(player.angle) * player.radius,
-          vx: Math.cos(player.angle) * 12,
-          vy: Math.sin(player.angle) * 12,
-          radius: 4,
-          color: '#00ffa3',
-          damage: 20
+          vx: Math.cos(player.angle) * 11.5,
+          vy: Math.sin(player.angle) * 11.5,
+          radius: 5,
+          color: '#34d399',
+          damage: 22
         });
       }
 
-      // EMP Cooldown
+      // Nova Cooldown
       if (!player.empReady) {
         player.empCooldown--;
         if (player.empCooldown <= 0) player.empReady = true;
@@ -1034,15 +1106,15 @@
             playSound('hit');
             projectiles.splice(i, 1);
 
-            // Particle splatter
-            for (let k = 0; k < 5; k++) {
+            // Spore splatter
+            for (let k = 0; k < 6; k++) {
               particles.push({
                 x: p.x, y: p.y,
                 vx: (Math.random() - 0.5) * 5,
                 vy: (Math.random() - 0.5) * 5,
-                radius: 2,
+                radius: 2.5,
                 color: e.color,
-                life: 15, maxLife: 15
+                life: 18, maxLife: 18
               });
             }
             break;
@@ -1052,7 +1124,7 @@
 
       // Spawner
       spawnTimer++;
-      if (spawnTimer > Math.max(30, 80 - wave * 4)) {
+      if (spawnTimer > Math.max(30, 85 - wave * 4)) {
         spawnTimer = 0;
         spawnEnemy();
       }
@@ -1067,22 +1139,19 @@
         // Collision with player
         const dist = Math.hypot(player.x - e.x, player.y - e.y);
         if (dist < player.radius + e.radius) {
-          addShake(8, 6);
+          addShake(9, 7);
           playSound('hit');
 
-          // Damage player (absorb with shield first)
-          let dmg = e.type === 'boss' ? 25 : 12;
+          let dmg = e.type === 'boss' ? 26 : 13;
           if (player.shield > 0) {
             player.shield = Math.max(0, player.shield - dmg);
           } else {
             player.hp = Math.max(0, player.hp - dmg);
           }
 
-          createFloatingText(player.x, player.y, `-${dmg} HP`, '#ff3366');
+          createFloatingText(player.x, player.y, `-${dmg} ESSENCE`, '#f43f5e');
 
-          if (e.type !== 'boss') {
-            enemies.splice(i, 1);
-          }
+          if (e.type !== 'boss') enemies.splice(i, 1);
 
           if (player.hp <= 0) {
             gameOver();
@@ -1091,33 +1160,33 @@
           continue;
         }
 
-        // Enemy Dead
+        // Enemy Cleansed
         if (e.hp <= 0) {
-          playSound('explode');
+          playSound('purify');
           addShake(5, 4);
 
-          // Explosive particle burst
-          for (let k = 0; k < 18; k++) {
+          // Ethereal leaf & firefly burst
+          for (let k = 0; k < 20; k++) {
             particles.push({
               x: e.x, y: e.y,
               vx: (Math.random() - 0.5) * 8,
               vy: (Math.random() - 0.5) * 8,
-              radius: Math.random() * 3 + 1,
-              color: e.color,
-              life: 25, maxLife: 25
+              radius: Math.random() * 3.5 + 1.5,
+              color: Math.random() > 0.5 ? '#34d399' : '#fbbf24',
+              life: 28, maxLife: 28
             });
           }
 
-          score += (e.type === 'boss' ? 500 : 50) * combo;
+          score += (e.type === 'boss' ? 550 : 55) * combo;
           curveEth = Math.min(GRADUATION_TARGET, curveEth + (e.type === 'boss' ? 0.35 : 0.04));
-          createFloatingText(e.x, e.y, `+${(e.type === 'boss' ? 500 : 50) * combo}`, '#00ffa3');
+          createFloatingText(e.x, e.y, `+${(e.type === 'boss' ? 550 : 55) * combo}`, '#34d399');
 
           spawnPickup(e.x, e.y);
           enemies.splice(i, 1);
         }
       }
 
-      // Next wave check
+      // Next clearing check
       if (enemiesRemainingInWave <= 0 && enemies.length === 0) {
         startWave(wave + 1);
       }
@@ -1135,19 +1204,19 @@
 
         const dist = Math.hypot(player.x - item.x, player.y - item.y);
         if (dist < player.radius + item.radius) {
-          playSound('powerup');
-          if (item.type === 'heal') {
+          playSound('nectar');
+          if (item.type === 'nectar') {
             player.hp = Math.min(player.maxHp, player.hp + 35);
-            createFloatingText(item.x, item.y, '+35 HEALTH', '#00ffa3');
-          } else if (item.type === 'shield') {
+            createFloatingText(item.x, item.y, '+35 ESSENCE', '#34d399');
+          } else if (item.type === 'barkskin') {
             player.shield = 100;
-            createFloatingText(item.x, item.y, 'SHIELD RESTORED', '#00e5ff');
-          } else if (item.type === 'emp') {
+            createFloatingText(item.x, item.y, 'BARKSKIN WARD', '#fbbf24');
+          } else if (item.type === 'nova') {
             player.empReady = true;
-            createFloatingText(item.x, item.y, 'EMP CHARGED', '#b537f2');
-          } else if (item.type === 'curve') {
+            createFloatingText(item.x, item.y, 'SYLVAN NOVA READY', '#c084fc');
+          } else if (item.type === 'sap') {
             curveEth = Math.min(GRADUATION_TARGET, curveEth + 0.25);
-            createFloatingText(item.x, item.y, '+0.25 ETH LIQUIDITY', '#ffd200');
+            createFloatingText(item.x, item.y, '+0.25 ETH SACRED SAP', '#fbbf24');
           }
           pickups.splice(i, 1);
         }
@@ -1173,17 +1242,15 @@
       // Update UI
       document.getElementById('hp-bar').style.width = (player.hp / player.maxHp * 100) + '%';
       document.getElementById('hp-text').innerText = `${Math.ceil(player.hp)} / ${player.maxHp}`;
-      document.getElementById('shield-text').innerText = `🛡️ ${Math.ceil(player.shield)}%`;
+      document.getElementById('shield-text').innerText = `🛡️ ${Math.ceil(player.shield)}% BARKSKIN`;
       document.getElementById('score-val').innerText = score.toLocaleString();
       document.getElementById('curve-val').innerText = `${curveEth.toFixed(2)} / ${GRADUATION_TARGET.toFixed(2)} ETH`;
       document.getElementById('curve-fill').style.width = ((curveEth / GRADUATION_TARGET) * 100) + '%';
     }
 
     /* ==========================================================
-       RENDER CANVAS
+       RENDER CANVAS - ENCHANTED FOREST GROVE
        ========================================================== */
-    let gridOffset = 0;
-
     function render() {
       ctx.save();
 
@@ -1195,137 +1262,183 @@
         ctx.translate(ox, oy);
       }
 
-      // Dark Cyber Grid Floor
-      ctx.fillStyle = '#07090b';
+      // Deep shadowy forest gradient
+      const bgGrad = ctx.createRadialGradient(width / 2, height / 2, 80, width / 2, height / 2, Math.max(width, height) * 0.7);
+      bgGrad.addColorStop(0, '#0c1f15');
+      bgGrad.addColorStop(0.6, '#06110a');
+      bgGrad.addColorStop(1, '#020604');
+      ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, width, height);
 
-      gridOffset = (gridOffset + 0.5) % 40;
-      ctx.strokeStyle = 'rgba(0, 255, 163, 0.04)';
+      // Ancient stone rune circles
+      ctx.save();
+      ctx.translate(width / 2, height / 2);
+      ctx.strokeStyle = 'rgba(52, 211, 153, 0.05)';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(0, 0, 180, 0, Math.PI * 2);
+      ctx.stroke();
+
+      ctx.strokeStyle = 'rgba(251, 191, 36, 0.04)';
       ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.arc(0, 0, 320, 0, Math.PI * 2);
+      ctx.stroke();
 
-      for (let x = gridOffset; x < width; x += 40) {
+      // Subtle ancient Celtic compass markings
+      for (let i = 0; i < 8; i++) {
+        const ang = (Math.PI * 2 / 8) * i;
         ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, height);
+        ctx.moveTo(Math.cos(ang) * 160, Math.sin(ang) * 160);
+        ctx.lineTo(Math.cos(ang) * 200, Math.sin(ang) * 200);
         ctx.stroke();
       }
-      for (let y = gridOffset; y < height; y += 40) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(width, y);
-        ctx.stroke();
-      }
+      ctx.restore();
 
-      // Pickups
+      // Ambient glowing fireflies
+      fireflies.forEach(f => {
+        ctx.save();
+        ctx.beginPath();
+        const pulseSize = f.radius * (1 + Math.sin(f.pulse) * 0.35);
+        ctx.arc(f.x, f.y, pulseSize, 0, Math.PI * 2);
+        ctx.fillStyle = f.color;
+        ctx.shadowColor = f.color;
+        ctx.shadowBlur = 10;
+        ctx.globalAlpha = 0.6 + Math.sin(f.pulse) * 0.3;
+        ctx.fill();
+        ctx.restore();
+      });
+
+      // Pickups (Sun Drops, Barkskin, Sacred Sap)
       pickups.forEach(item => {
         ctx.save();
         ctx.translate(item.x, item.y);
-        const scale = 1 + Math.sin(item.pulse) * 0.15;
+        const scale = 1 + Math.sin(item.pulse) * 0.18;
         ctx.scale(scale, scale);
 
+        let color = item.type === 'nectar' ? '#34d399' : (item.type === 'barkskin' ? '#fbbf24' : '#c084fc');
         ctx.beginPath();
         ctx.arc(0, 0, item.radius, 0, Math.PI * 2);
-        let color = item.type === 'heal' ? '#00ffa3' : (item.type === 'shield' ? '#00e5ff' : '#ffd200');
         ctx.fillStyle = color;
         ctx.shadowColor = color;
-        ctx.shadowBlur = 12;
+        ctx.shadowBlur = 14;
         ctx.fill();
 
-        ctx.font = '10px "JetBrains Mono"';
-        ctx.fillStyle = '#051216';
+        ctx.font = 'bold 9px "JetBrains Mono"';
+        ctx.fillStyle = '#05190e';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(item.type.toUpperCase().slice(0, 3), 0, 1);
         ctx.restore();
       });
 
-      // Projectiles
+      // Projectiles (Luminescent Spores)
       projectiles.forEach(p => {
         ctx.save();
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
         ctx.shadowColor = p.color;
-        ctx.shadowBlur = 10;
+        ctx.shadowBlur = 12;
+        ctx.fill();
+
+        // Inner glowing core
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius * 0.5, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffffff';
         ctx.fill();
         ctx.restore();
       });
 
-      // Enemies
+      // Enemies (Shadow Beasts & Blight Colossus)
       enemies.forEach(e => {
         ctx.save();
         ctx.translate(e.x, e.y);
 
-        // Health Ring
+        // Blight corruption ring
         ctx.beginPath();
-        ctx.arc(0, 0, e.radius + 4, 0, (Math.PI * 2) * (e.hp / e.maxHp));
+        ctx.arc(0, 0, e.radius + 5, 0, (Math.PI * 2) * (e.hp / e.maxHp));
         ctx.strokeStyle = e.color;
-        ctx.lineWidth = 2.5;
+        ctx.lineWidth = 2.8;
         ctx.stroke();
 
-        // Body
+        // Dark shadowy body
         ctx.beginPath();
         ctx.arc(0, 0, e.radius, 0, Math.PI * 2);
-        ctx.fillStyle = '#141c22';
+        ctx.fillStyle = '#0f1712';
         ctx.fill();
         ctx.strokeStyle = e.color;
         ctx.lineWidth = 2;
         ctx.stroke();
 
-        // Eye / Indicator
+        // Glowing red / purple beast eye
         ctx.beginPath();
-        ctx.arc(0, 0, e.radius * 0.4, 0, Math.PI * 2);
+        ctx.arc(0, 0, e.radius * 0.45, 0, Math.PI * 2);
         ctx.fillStyle = e.color;
         ctx.shadowColor = e.color;
-        ctx.shadowBlur = 8;
+        ctx.shadowBlur = 10;
         ctx.fill();
 
         ctx.restore();
       });
 
-      // Player (Cyber Chef Bot)
+      // Player: Mythic Forest Spirit Guardian
       if (gameState === 'PLAYING') {
         ctx.save();
         ctx.translate(player.x, player.y);
         ctx.rotate(player.angle);
 
-        // Shield Glow
+        // Barkskin Shield Aura
         if (player.shield > 0) {
           ctx.beginPath();
-          ctx.arc(0, 0, player.radius + 8, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(0, 229, 255, ${player.shield / 100 * 0.6})`;
-          ctx.lineWidth = 2;
+          ctx.arc(0, 0, player.radius + 9, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(251, 191, 36, ${player.shield / 100 * 0.75})`;
+          ctx.lineWidth = 2.5;
+          ctx.shadowColor = '#fbbf24';
+          ctx.shadowBlur = 12;
           ctx.stroke();
         }
 
-        // Body Ring
+        // Emerald Spirit Core
         ctx.beginPath();
         ctx.arc(0, 0, player.radius, 0, Math.PI * 2);
-        ctx.fillStyle = '#0b1619';
+        ctx.fillStyle = '#082618';
         ctx.fill();
-        ctx.strokeStyle = '#00ffa3';
+        ctx.strokeStyle = '#34d399';
         ctx.lineWidth = 3;
-        ctx.shadowColor = '#00ffa3';
-        ctx.shadowBlur = 10;
+        ctx.shadowColor = '#34d399';
+        ctx.shadowBlur = 15;
         ctx.stroke();
 
-        // Laser Spatula / Weapon Barrel
-        ctx.fillStyle = '#00ffa3';
-        ctx.fillRect(player.radius - 2, -3, 14, 6);
+        // Wooden staff / spore blossom barrel
+        ctx.fillStyle = '#b45309';
+        ctx.fillRect(player.radius - 2, -3, 15, 6);
+        ctx.fillStyle = '#34d399';
+        ctx.beginPath();
+        ctx.arc(player.radius + 13, 0, 4, 0, Math.PI * 2);
+        ctx.fill();
 
-        // Chef visor
-        ctx.fillStyle = '#00e5ff';
-        ctx.fillRect(2, -5, 8, 10);
+        // Antler crown accents
+        ctx.strokeStyle = '#a7f3d0';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(-6, -player.radius);
+        ctx.lineTo(-12, -player.radius - 8);
+        ctx.moveTo(6, -player.radius);
+        ctx.lineTo(12, -player.radius - 8);
+        ctx.stroke();
 
         ctx.restore();
       }
 
-      // Particles
+      // Particles (Leaves & Spores)
       particles.forEach(p => {
         ctx.save();
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = 8;
         ctx.globalAlpha = p.life / p.maxLife;
         ctx.fill();
         ctx.restore();
@@ -1337,8 +1450,8 @@
         ctx.font = 'bold 13px "JetBrains Mono"';
         ctx.fillStyle = f.color;
         ctx.shadowColor = f.color;
-        ctx.shadowBlur = 6;
-        ctx.globalAlpha = f.life / 40;
+        ctx.shadowBlur = 8;
+        ctx.globalAlpha = f.life / 45;
         ctx.fillText(f.text, f.x, f.y);
         ctx.restore();
       });
@@ -1378,8 +1491,8 @@
 
     function gameOver() {
       gameState = 'GAMEOVER';
-      playSound('explode');
-      addShake(20, 16);
+      playSound('hit');
+      addShake(22, 16);
 
       document.getElementById('final-score').innerText = score.toLocaleString();
       saveHighScore(score);
@@ -1391,25 +1504,25 @@
       startGame();
     }
 
-    /* LEADERBOARD (Local + Mock On-Chain) */
+    /* LEADERBOARD */
     function getHighScores() {
-      const stored = localStorage.getItem('viber_clash_scores');
+      const stored = localStorage.getItem('viber_grove_scores');
       if (stored) return JSON.parse(stored);
       return [
-        { name: "Raven_Quant", score: 84200 },
-        { name: "RobinhoodChef", score: 61500 },
-        { name: "AlphaBot_46630", score: 49800 },
-        { name: "SeedifyWhale", score: 32400 },
-        { name: "DegenPlayer_1", score: 18900 }
+        { name: "Sylvan_Raven", score: 98400 },
+        { name: "RobinhoodElder", score: 72100 },
+        { name: "AncientGrove_46630", score: 54600 },
+        { name: "SporeWarden", score: 38200 },
+        { name: "ForestDruid", score: 21500 }
       ];
     }
 
     function saveHighScore(newScore) {
       let list = getHighScores();
-      list.push({ name: "You (Viber Pilot)", score: newScore });
+      list.push({ name: "You (Forest Guardian)", score: newScore });
       list.sort((a, b) => b.score - a.score);
       list = list.slice(0, 5);
-      localStorage.setItem('viber_clash_scores', JSON.stringify(list));
+      localStorage.setItem('viber_grove_scores', JSON.stringify(list));
     }
 
     function renderLeaderboard() {
@@ -1419,7 +1532,7 @@
         <div class="leaderboard-row">
           <span class="rank">#${idx + 1}</span>
           <span>${item.name}</span>
-          <span style="color:var(--neon-green)">${item.score.toLocaleString()} PTS</span>
+          <span style="color:var(--emerald-bright)">${item.score.toLocaleString()} PTS</span>
         </div>
       `).join('');
     }
@@ -1431,15 +1544,14 @@
         try {
           const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
           const addr = accounts[0];
-          btn.innerText = `🟢 ${addr.slice(0, 6)}...${addr.slice(-4)}`;
-          btn.style.background = '#0d281e';
-          btn.style.color = '#00ffa3';
+          btn.innerText = `🌿 ${addr.slice(0, 6)}...${addr.slice(-4)}`;
+          btn.style.background = '#064e3b';
+          btn.style.color = '#34d399';
 
-          // Attempt switch to Robinhood Chain Testnet
           try {
             await window.ethereum.request({
               method: 'wallet_switchEthereumChain',
-              params: [{ chainId: '0xb626' }] // 46630 in hex
+              params: [{ chainId: '0xb626' }] // 46630 hex
             });
           } catch (switchError) {
             if (switchError.code === 4902) {
@@ -1459,9 +1571,9 @@
           console.error(err);
         }
       } else {
-        btn.innerText = "🟢 0x71F...89b1 (Demo)";
-        btn.style.background = '#0d281e';
-        btn.style.color = '#00ffa3';
+        btn.innerText = "🌿 0x71F...89b1 (Demo)";
+        btn.style.background = '#064e3b';
+        btn.style.color = '#34d399';
       }
     }
 
@@ -1471,7 +1583,6 @@
       else modal.classList.remove('active');
     }
 
-    // Kick off animation loop
     renderLeaderboard();
     requestAnimationFrame(render);
   </script>
