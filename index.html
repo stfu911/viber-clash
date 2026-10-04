@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>VIBER GROVE · Mythic Forest Arena</title>
   <link rel="icon" href="logo.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-forest: #060e0a;
-      --bg-surface: rgba(12, 24, 18, 0.85);
-      --border-moss: rgba(52, 211, 153, 0.28);
-      --border-wood: rgba(180, 130, 80, 0.3);
+      --bg-surface: rgba(12, 24, 18, 0.88);
+      --border-moss: rgba(52, 211, 153, 0.3);
+      --border-gold: rgba(251, 191, 36, 0.35);
       
       --emerald-glow: #10b981;
       --emerald-bright: #34d399;
@@ -34,59 +34,59 @@
       padding: 0;
       user-select: none;
       -webkit-user-select: none;
+      touch-action: manipulation;
     }
 
-    body {
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
       background-color: var(--bg-forest);
       color: #e6f4ea;
       font-family: var(--font-body);
-      overflow: hidden;
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
+      position: fixed;
     }
 
-    /* TOP BAR - ENCHANTED WOODEN GLASS */
+    /* TOP BAR */
     header {
-      height: 64px;
-      background: linear-gradient(180deg, rgba(8, 17, 12, 0.95) 0%, rgba(13, 27, 20, 0.85) 100%);
+      height: 60px;
+      background: linear-gradient(180deg, rgba(8, 17, 12, 0.96) 0%, rgba(13, 27, 20, 0.88) 100%);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border-moss);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 24px;
+      padding: 0 16px;
       z-index: 100;
       flex-shrink: 0;
-      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 10px;
       cursor: pointer;
     }
 
     .brand img {
-      width: 42px;
-      height: 42px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       border: 2px solid var(--emerald-bright);
-      box-shadow: 0 0 15px rgba(52, 211, 153, 0.45);
+      box-shadow: 0 0 12px rgba(52, 211, 153, 0.4);
       object-fit: cover;
     }
 
     .brand-title {
       font-family: var(--font-title);
       font-weight: 800;
-      font-size: 1.35rem;
-      letter-spacing: 2px;
+      font-size: 1.2rem;
+      letter-spacing: 1.5px;
       color: #f0fdf4;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
     .brand-title span {
@@ -96,52 +96,42 @@
 
     .badge-testnet {
       font-family: var(--font-mono);
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       background: rgba(16, 185, 129, 0.15);
       color: var(--moss-text);
-      border: 1px solid rgba(52, 211, 153, 0.35);
-      padding: 3px 10px;
-      border-radius: 20px;
-      letter-spacing: 0.5px;
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      padding: 2px 8px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
-      gap: 5px;
-    }
-
-    .badge-testnet::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      background: var(--emerald-bright);
-      border-radius: 50%;
-      box-shadow: 0 0 6px var(--emerald-bright);
+      gap: 4px;
     }
 
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
     }
 
     .btn {
       font-family: var(--font-title);
       font-weight: 700;
-      font-size: 0.82rem;
-      letter-spacing: 1px;
-      padding: 9px 18px;
+      font-size: 0.78rem;
+      letter-spacing: 0.8px;
+      padding: 8px 14px;
       border-radius: 8px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      gap: 6px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       text-decoration: none;
       border: none;
       outline: none;
     }
 
     .btn-outline {
-      background: rgba(16, 185, 129, 0.08);
+      background: rgba(16, 185, 129, 0.1);
       border: 1px solid rgba(52, 211, 153, 0.3);
       color: #d1fae5;
     }
@@ -149,33 +139,26 @@
     .btn-outline:hover {
       border-color: var(--emerald-bright);
       color: #fff;
-      box-shadow: 0 0 15px rgba(52, 211, 153, 0.3);
-      background: rgba(16, 185, 129, 0.16);
+      background: rgba(16, 185, 129, 0.2);
     }
 
     .btn-forest {
       background: linear-gradient(135deg, #059669 0%, #047857 100%);
       color: #f0fdf4;
       border: 1px solid rgba(52, 211, 153, 0.4);
-      box-shadow: 0 0 16px rgba(5, 150, 105, 0.35);
+      box-shadow: 0 0 14px rgba(5, 150, 105, 0.35);
     }
 
     .btn-forest:hover {
       transform: translateY(-1px);
-      box-shadow: 0 0 24px rgba(52, 211, 153, 0.5);
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      box-shadow: 0 0 20px rgba(52, 211, 153, 0.5);
     }
 
     .btn-vibe {
       background: linear-gradient(135deg, #b45309 0%, #d97706 100%);
       color: #fffbeb;
       border: 1px solid rgba(251, 191, 36, 0.4);
-      box-shadow: 0 0 15px rgba(245, 158, 11, 0.35);
-    }
-
-    .btn-vibe:hover {
-      box-shadow: 0 0 22px rgba(251, 191, 36, 0.55);
-      transform: translateY(-1px);
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
     }
 
     /* GAME CANVAS VIEWPORT */
@@ -183,18 +166,20 @@
       position: relative;
       flex: 1;
       width: 100%;
-      height: calc(100vh - 64px);
+      height: calc(100% - 60px);
       overflow: hidden;
       background: #040906;
+      touch-action: none;
     }
 
     canvas {
       display: block;
       width: 100%;
       height: 100%;
+      touch-action: none;
     }
 
-    /* HUD OVERLAY - MOSS & STONE */
+    /* HUD OVERLAY */
     #hud {
       position: absolute;
       top: 0;
@@ -202,7 +187,7 @@
       right: 0;
       bottom: 0;
       pointer-events: none;
-      padding: 22px;
+      padding: 12px 16px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -212,40 +197,41 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
+      gap: 8px;
     }
 
     .stat-card {
-      background: rgba(10, 22, 16, 0.78);
+      background: rgba(10, 22, 16, 0.8);
       backdrop-filter: blur(10px);
       border: 1px solid var(--border-moss);
-      border-radius: 12px;
-      padding: 12px 18px;
+      border-radius: 10px;
+      padding: 8px 14px;
       pointer-events: auto;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     }
 
     .stat-label {
       font-family: var(--font-mono);
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       color: #6ee7b7;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
+      letter-spacing: 1px;
     }
 
     .stat-val {
       font-family: var(--font-title);
-      font-size: 1.45rem;
+      font-size: 1.25rem;
       font-weight: 800;
       color: #f0fdf4;
     }
 
     .health-bar-container {
-      width: 220px;
-      height: 12px;
+      width: 180px;
+      height: 10px;
       background: rgba(4, 15, 9, 0.6);
-      border-radius: 8px;
+      border-radius: 6px;
       overflow: hidden;
-      margin-top: 6px;
+      margin-top: 4px;
       border: 1px solid rgba(52, 211, 153, 0.3);
     }
 
@@ -254,7 +240,7 @@
       width: 100%;
       background: linear-gradient(90deg, #10b981, #34d399, #fbbf24);
       transition: width 0.15s ease-out;
-      box-shadow: 0 0 12px rgba(16, 185, 129, 0.7);
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.7);
     }
 
     .curve-widget {
@@ -264,12 +250,12 @@
     }
 
     .curve-progress-bar {
-      width: 190px;
-      height: 8px;
+      width: 140px;
+      height: 7px;
       background: rgba(4, 15, 9, 0.6);
-      border-radius: 6px;
+      border-radius: 4px;
       overflow: hidden;
-      margin-top: 6px;
+      margin-top: 4px;
       border: 1px solid rgba(251, 191, 36, 0.3);
     }
 
@@ -277,14 +263,14 @@
       height: 100%;
       width: 10%;
       background: linear-gradient(90deg, #f59e0b, #fbbf24);
-      box-shadow: 0 0 10px rgba(251, 191, 36, 0.6);
+      box-shadow: 0 0 8px rgba(251, 191, 36, 0.6);
       transition: width 0.2s;
     }
 
     /* WAVE BANNER */
     #wave-banner {
       position: absolute;
-      top: 35%;
+      top: 32%;
       left: 50%;
       transform: translate(-50%, -50%) scale(0.85);
       opacity: 0;
@@ -301,36 +287,122 @@
 
     #wave-banner h2 {
       font-family: var(--font-title);
-      font-size: 3.2rem;
+      font-size: 2.5rem;
       font-weight: 900;
       color: #f0fdf4;
-      text-shadow: 0 0 25px rgba(52, 211, 153, 0.8), 0 0 50px rgba(16, 185, 129, 0.4);
-      letter-spacing: 4px;
+      text-shadow: 0 0 20px rgba(52, 211, 153, 0.8);
+      letter-spacing: 3px;
     }
 
     #wave-banner p {
       font-family: var(--font-mono);
-      font-size: 1rem;
+      font-size: 0.9rem;
       color: var(--firefly-gold);
-      margin-top: 6px;
-      letter-spacing: 1.5px;
+      margin-top: 4px;
     }
 
-    /* OVERLAYS - ENCHANTED WOODLAND SANCTUARY */
+    /* TOUCH CONTROLS (PHONE & TABLET) */
+    #touch-controls {
+      display: none;
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      padding: 0 20px;
+      justify-content: space-between;
+      align-items: flex-end;
+      pointer-events: none;
+      z-index: 70;
+    }
+
+    /* Virtual Joystick */
+    #joystick-area {
+      width: 130px;
+      height: 130px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 2px dashed rgba(52, 211, 153, 0.35);
+      border-radius: 50%;
+      position: relative;
+      pointer-events: auto;
+      touch-action: none;
+      backdrop-filter: blur(4px);
+    }
+
+    #joystick-knob {
+      width: 50px;
+      height: 50px;
+      background: radial-gradient(circle, #34d399 0%, #059669 100%);
+      border: 2px solid #a7f3d0;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 15px rgba(52, 211, 153, 0.6);
+      pointer-events: none;
+    }
+
+    /* Action Buttons on Mobile */
+    .touch-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: center;
+      pointer-events: auto;
+    }
+
+    .touch-action-btn {
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-title);
+      font-weight: 800;
+      cursor: pointer;
+      touch-action: none;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+      transition: transform 0.1s;
+    }
+
+    .touch-action-btn:active {
+      transform: scale(0.92);
+    }
+
+    #btn-touch-spore {
+      width: 76px;
+      height: 76px;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.85) 0%, rgba(5, 150, 105, 0.95) 100%);
+      border: 2px solid var(--emerald-bright);
+      color: #fff;
+      font-size: 0.8rem;
+    }
+
+    #btn-touch-nova {
+      width: 58px;
+      height: 58px;
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.8) 0%, rgba(217, 119, 6, 0.9) 100%);
+      border: 2px solid var(--firefly-gold);
+      color: #fff;
+      font-size: 0.72rem;
+    }
+
+    /* OVERLAYS & MODALS */
     .overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at center, rgba(6, 17, 11, 0.85) 0%, rgba(2, 8, 4, 0.94) 100%);
+      background: radial-gradient(circle at center, rgba(6, 17, 11, 0.88) 0%, rgba(2, 8, 4, 0.96) 100%);
       backdrop-filter: blur(14px);
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 80;
       opacity: 1;
-      transition: opacity 0.35s ease;
+      padding: 16px;
+      transition: opacity 0.3s ease;
     }
 
     .overlay.hidden {
@@ -339,64 +411,103 @@
     }
 
     .card-modal {
-      background: linear-gradient(170deg, rgba(14, 30, 22, 0.95) 0%, rgba(8, 18, 13, 0.98) 100%);
+      background: linear-gradient(170deg, rgba(14, 30, 22, 0.96) 0%, rgba(8, 18, 13, 0.98) 100%);
       border: 1px solid rgba(52, 211, 153, 0.4);
-      box-shadow: 0 0 45px rgba(16, 185, 129, 0.25), 0 20px 40px rgba(0, 0, 0, 0.8);
-      border-radius: 20px;
-      max-width: 540px;
-      width: 90%;
-      padding: 36px;
+      box-shadow: 0 0 40px rgba(16, 185, 129, 0.25), 0 20px 40px rgba(0, 0, 0, 0.8);
+      border-radius: 18px;
+      max-width: 500px;
+      width: 100%;
+      padding: 26px 22px;
       text-align: center;
       position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
     }
 
     .modal-hero-img {
-      width: 110px;
-      height: 110px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
       border: 3px solid var(--emerald-bright);
-      margin: 0 auto 18px;
-      box-shadow: 0 0 25px rgba(52, 211, 153, 0.5), inset 0 0 15px rgba(0, 0, 0, 0.5);
+      margin: 0 auto 14px;
+      box-shadow: 0 0 20px rgba(52, 211, 153, 0.45);
       display: block;
       object-fit: cover;
     }
 
     .card-modal h1 {
       font-family: var(--font-title);
-      font-size: 2.3rem;
+      font-size: 1.8rem;
       font-weight: 900;
-      letter-spacing: 3px;
-      margin-bottom: 8px;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
       color: #f0fdf4;
-      text-shadow: 0 0 15px rgba(52, 211, 153, 0.4);
+      text-shadow: 0 0 12px rgba(52, 211, 153, 0.35);
     }
 
     .card-modal p {
-      font-size: 0.98rem;
+      font-size: 0.9rem;
       color: #a7f3d0;
-      line-height: 1.6;
-      margin-bottom: 24px;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    /* USERNAME INPUT BOX */
+    .username-input-wrap {
+      background: rgba(4, 15, 9, 0.7);
+      border: 1.5px solid var(--emerald-bright);
+      box-shadow: 0 0 15px rgba(52, 211, 153, 0.2);
+      border-radius: 10px;
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .username-prefix {
+      font-family: var(--font-title);
+      color: var(--firefly-gold);
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
+
+    .username-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .username-input::placeholder {
+      color: rgba(167, 243, 208, 0.4);
+      font-weight: 400;
     }
 
     .controls-hint {
       background: rgba(4, 15, 9, 0.6);
       border: 1px solid rgba(52, 211, 153, 0.2);
-      border-radius: 12px;
-      padding: 14px;
+      border-radius: 10px;
+      padding: 10px 12px;
       font-family: var(--font-mono);
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: #d1fae5;
-      margin-bottom: 26px;
+      margin-bottom: 20px;
       text-align: left;
-      line-height: 1.7;
+      line-height: 1.6;
     }
 
+    /* LEADERBOARD VIEW */
     .leaderboard-list {
-      background: rgba(4, 15, 9, 0.5);
+      background: rgba(4, 15, 9, 0.6);
       border-radius: 10px;
-      padding: 12px;
-      margin-bottom: 22px;
-      max-height: 160px;
+      padding: 10px;
+      margin-bottom: 18px;
+      max-height: 180px;
       overflow-y: auto;
       border: 1px solid rgba(52, 211, 153, 0.15);
     }
@@ -404,9 +515,10 @@
     .leaderboard-row {
       display: flex;
       justify-content: space-between;
-      padding: 7px 12px;
+      align-items: center;
+      padding: 7px 10px;
       font-family: var(--font-mono);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
@@ -414,38 +526,65 @@
       border-bottom: none;
     }
 
+    .leaderboard-row.highlight {
+      background: rgba(52, 211, 153, 0.15);
+      border-radius: 6px;
+    }
+
     .leaderboard-row .rank {
-      color: var(--firefly-gold);
+      font-weight: bold;
+      width: 32px;
+      color: #9cb1bc;
+    }
+
+    .leaderboard-row .rank.top1 { color: #fbbf24; }
+    .leaderboard-row .rank.top2 { color: #e2e8f0; }
+    .leaderboard-row .rank.top3 { color: #f59e0b; }
+
+    .leaderboard-row .user-tag {
+      flex: 1;
+      text-align: left;
+      color: #f0fdf4;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-right: 8px;
+    }
+
+    .leaderboard-row .pts {
+      color: var(--emerald-bright);
       font-weight: bold;
     }
 
-    /* TOKEN LAUNCHPAD MODAL */
-    #launch-info-modal {
+    /* GLOBAL LEADERBOARD POPUP */
+    #global-lb-modal, #launch-info-modal {
       display: none;
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 90%;
-      max-width: 580px;
+      width: 92%;
+      max-width: 520px;
       background: linear-gradient(170deg, #0d2217 0%, #07150e 100%);
       border: 1px solid var(--emerald-bright);
       box-shadow: 0 0 50px rgba(16, 185, 129, 0.35);
-      border-radius: 18px;
-      padding: 30px;
+      border-radius: 16px;
+      padding: 24px;
       z-index: 200;
       color: #e6f4ea;
+      max-height: 85vh;
+      overflow-y: auto;
     }
 
-    #launch-info-modal.active {
+    #global-lb-modal.active, #launch-info-modal.active {
       display: block;
     }
 
     .modal-close {
       position: absolute;
-      top: 18px;
-      right: 22px;
-      font-size: 1.6rem;
+      top: 14px;
+      right: 18px;
+      font-size: 1.5rem;
       color: #6ee7b7;
       cursor: pointer;
     }
@@ -454,83 +593,48 @@
       color: #fff;
     }
 
-    .modal-step {
-      display: flex;
-      gap: 14px;
-      margin-bottom: 15px;
-      align-items: flex-start;
-      font-size: 0.92rem;
-      line-height: 1.5;
-    }
-
-    .step-num {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--emerald-bright);
-      color: #042f1a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      flex-shrink: 0;
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-    }
-
-    /* MOBILE CONTROLS */
-    #mobile-controls {
-      display: none;
-      position: absolute;
-      bottom: 25px;
-      left: 0;
-      right: 0;
-      padding: 0 30px;
-      justify-content: space-between;
-      pointer-events: none;
-      z-index: 60;
-    }
-
-    .touch-btn {
-      width: 76px;
-      height: 76px;
-      border-radius: 50%;
-      background: rgba(16, 185, 129, 0.22);
-      border: 2px solid var(--emerald-bright);
-      color: #f0fdf4;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-title);
-      font-weight: 900;
-      font-size: 0.9rem;
-      pointer-events: auto;
-      touch-action: none;
-      box-shadow: 0 0 18px rgba(16, 185, 129, 0.35);
-    }
-
-    @media (max-width: 768px) {
-      header {
-        padding: 0 14px;
-      }
-      .brand-title {
-        font-size: 1.05rem;
-      }
-      .brand img {
-        width: 34px;
-        height: 34px;
+    /* RESPONSIVE QUERIES (PHONE & TABLET) */
+    @media (hover: none) and (pointer: coarse), (max-width: 900px) {
+      #touch-controls {
+        display: flex;
       }
       .badge-testnet {
         display: none;
       }
       .health-bar-container {
-        width: 140px;
+        width: 120px;
       }
       .curve-progress-bar {
-        width: 110px;
+        width: 90px;
       }
-      #mobile-controls {
-        display: flex;
+      .stat-card {
+        padding: 6px 10px;
+      }
+      .stat-val {
+        font-size: 1.05rem;
+      }
+      .brand-title {
+        font-size: 1.05rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 0 10px;
+      }
+      .brand-title {
+        font-size: 0.95rem;
+      }
+      .brand img {
+        width: 32px;
+        height: 32px;
+      }
+      .btn {
+        padding: 6px 10px;
+        font-size: 0.72rem;
+      }
+      #hud {
+        padding: 8px 10px;
       }
     }
   </style>
@@ -546,14 +650,17 @@
     </div>
 
     <div class="header-actions">
+      <button class="btn btn-outline" onclick="openGlobalLeaderboard()">
+        🏆 Leaderboard
+      </button>
       <button class="btn btn-outline" id="btn-token-info" onclick="toggleTokenModal(true)">
-        🌿 Token Launchpad
+        🌿 Launchpad
       </button>
       <a href="https://testnet.vibevibe.fun/" target="_blank" class="btn btn-vibe">
-        🔥 Trade on vibe/vibe
+        🔥 Trade
       </a>
       <button class="btn btn-forest" id="btn-wallet" onclick="handleWalletConnect()">
-        ✨ Connect Wallet
+        ✨ Wallet
       </button>
     </div>
   </header>
@@ -567,13 +674,13 @@
       <div class="hud-top">
         <!-- GUARDIAN HP -->
         <div class="stat-card">
-          <div class="stat-label">FOREST SPIRIT ESSENCE</div>
+          <div class="stat-label">GUARDIAN ESSENCE</div>
           <div class="health-bar-container">
             <div id="hp-bar" class="health-bar"></div>
           </div>
-          <div style="display:flex; justify-content:space-between; margin-top:5px; font-family:var(--font-mono); font-size:0.75rem;">
+          <div style="display:flex; justify-content:space-between; margin-top:4px; font-family:var(--font-mono); font-size:0.7rem;">
             <span id="hp-text">100 / 100</span>
-            <span id="shield-text" style="color:var(--firefly-gold)">🛡️ 100% BARKSKIN</span>
+            <span id="shield-text" style="color:var(--firefly-gold)">🛡️ 100%</span>
           </div>
         </div>
 
@@ -581,15 +688,15 @@
         <div class="stat-card" style="text-align: center;">
           <div class="stat-label">SACRED HARVEST</div>
           <div class="stat-val" id="score-val" style="color:var(--emerald-bright)">0</div>
-          <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--firefly-gold);">
-            CLEARING <span id="wave-num">1</span> · ESSENCE <span id="combo-num">x1.0</span>
+          <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--firefly-gold);">
+            WAVE <span id="wave-num">1</span> · <span id="player-display-tag">@player</span>
           </div>
         </div>
 
         <!-- BONDING CURVE GRADUATION -->
         <div class="stat-card curve-widget">
-          <div class="stat-label">SACRED GROVE GRADUATION</div>
-          <div class="stat-val" id="curve-val" style="font-size:1.15rem; color:var(--firefly-gold)">0.00 / 4.00 ETH</div>
+          <div class="stat-label">GROVE GRADUATION</div>
+          <div class="stat-val" id="curve-val" style="font-size:1.05rem; color:var(--firefly-gold)">0.00 / 4.00 ETH</div>
           <div class="curve-progress-bar">
             <div id="curve-fill" class="curve-fill"></div>
           </div>
@@ -602,29 +709,45 @@
         <p id="wave-sub">BLIGHT SHADOWS APPROACH</p>
       </div>
 
-      <!-- MOBILE CONTROLS -->
-      <div id="mobile-controls">
-        <div id="joystick-pad" class="touch-btn">MOVE</div>
-        <div id="fire-pad" class="touch-btn" style="border-color:var(--firefly-gold); background:rgba(251, 191, 36, 0.2);">SPORE</div>
+      <!-- TOUCH CONTROLS (VIRTUAL JOYSTICK & ACTIONS FOR PHONES/TABLETS) -->
+      <div id="touch-controls">
+        <div id="joystick-area">
+          <div id="joystick-knob"></div>
+        </div>
+
+        <div class="touch-actions">
+          <div id="btn-touch-spore" class="touch-action-btn">
+            <span style="font-size:1.3rem;">🍃</span>
+            <span>CAST</span>
+          </div>
+          <div id="btn-touch-nova" class="touch-action-btn">
+            <span style="font-size:1.1rem;">🌸</span>
+            <span>NOVA</span>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- START SCREEN -->
+    <!-- START SCREEN (WITH REQUIRED X USERNAME) -->
     <div id="start-overlay" class="overlay">
       <div class="card-modal">
         <img src="logo.jpg" alt="Mythic Forest Spirit" class="modal-hero-img">
         <h1>VIBER GROVE</h1>
-        <p>You are the Mythic Forest Guardian. Cleanse corrupted shadow beasts, blight swarms, and rogue algorithms invading the ancient sanctuary.</p>
+        <p>Cleanse corrupted shadow beasts in the sacred forest. Enter your X (Twitter) username to join the live global leaderboard!</p>
         
-        <div class="controls-hint">
-          🍃 <b>MOVEMENT:</b> [W,A,S,D] or [Arrow Keys] to glide through the trees<br>
-          ✨ <b>AIM & CAST:</b> Move [Mouse] to aim · Casts glowing emerald spore blasts<br>
-          🌸 <b>SYLVAN BURST:</b> Press [SPACEBAR] to unleash Ancient Rune Nova<br>
-          📱 <b>MOBILE:</b> Drag left circle to move, right button to release spores!
+        <!-- X USERNAME INPUT -->
+        <div class="username-input-wrap">
+          <span class="username-prefix">@</span>
+          <input type="text" id="x-username-input" class="username-input" placeholder="your_x_username" maxlength="25" autocomplete="off" autocapitalize="none">
         </div>
 
-        <button class="btn btn-forest" style="width:100%; padding:15px; font-size:1.15rem;" onclick="startGame()">
-          🌿 ENTER THE SACRED GROVE
+        <div class="controls-hint">
+          🍃 <b>MOBILE / TABLET:</b> Left Virtual Joystick to move · Right buttons to Cast & Nova<br>
+          ⌨️ <b>DESKTOP:</b> [W,A,S,D] / [Arrows] to move · Mouse Aim & Auto-Cast · [SPACE] Nova
+        </div>
+
+        <button class="btn btn-forest" style="width:100%; padding:14px; font-size:1.1rem;" onclick="handleEnterGame()">
+          🌿 ENTER SACRED GROVE & SAVE
         </button>
       </div>
     </div>
@@ -633,23 +756,26 @@
     <div id="gameover-overlay" class="overlay hidden">
       <div class="card-modal">
         <h1 style="color:var(--blight-crimson)">SPIRIT DISSOLVED</h1>
-        <p>The blight has overtaken the grove. Your sacred essence was sealed into Robinhood Chain testnet.</p>
+        <p id="gameover-msg">Your harvest has been sealed to the global leaderboard.</p>
         
-        <div class="stat-card" style="margin-bottom: 22px;">
-          <div class="stat-label">TOTAL SACRED HARVEST</div>
+        <div class="stat-card" style="margin-bottom: 16px;">
+          <div class="stat-label">FINAL HARVEST SCORE</div>
           <div class="stat-val" id="final-score" style="color:var(--emerald-bright)">0</div>
-          <div style="font-family:var(--font-mono); font-size:0.8rem; color:#a7f3d0; margin-top:5px;">
-            TESTNET ETH REWARD CLAIMABLE ON VIBE/VIBE
+          <div style="font-family:var(--font-mono); font-size:0.75rem; color:#a7f3d0; margin-top:4px;" id="submission-status">
+            Saving score to live database...
           </div>
         </div>
 
+        <div style="text-align:left; margin-bottom:6px; font-family:var(--font-mono); font-size:0.75rem; color:var(--firefly-gold);">
+          🏆 LIVE GLOBAL LEADERBOARD:
+        </div>
         <div class="leaderboard-list" id="leaderboard-box">
           <!-- Populated by JS -->
         </div>
 
-        <div style="display:flex; gap:12px;">
+        <div style="display:flex; gap:10px;">
           <button class="btn btn-forest" style="flex:1;" onclick="restartGame()">
-            🌱 REBORN SPIRIT
+            🌱 REBORN
           </button>
           <a href="https://testnet.vibevibe.fun/" target="_blank" class="btn btn-vibe" style="flex:1;">
             🌿 BUY $GROVE
@@ -659,54 +785,198 @@
     </div>
   </div>
 
+  <!-- GLOBAL LEADERBOARD MODAL -->
+  <div id="global-lb-modal">
+    <span class="modal-close" onclick="closeGlobalLeaderboard()">&times;</span>
+    <h2 style="font-family:var(--font-title); font-size:1.5rem; color:var(--emerald-bright); margin-bottom:6px;">
+      🏆 Global Sacred Leaderboard
+    </h2>
+    <p style="font-size:0.85rem; color:#a7f3d0; margin-bottom:14px;">
+      Live verified players ranked by highest score on Robinhood Chain testnet.
+    </p>
+    <div class="leaderboard-list" id="modal-leaderboard-box" style="max-height: 350px;">
+      <!-- Populated by JS -->
+    </div>
+    <div style="text-align:center; margin-top:14px;">
+      <button class="btn btn-forest" style="width:100%;" onclick="closeGlobalLeaderboard()">
+        CLOSE
+      </button>
+    </div>
+  </div>
+
   <!-- TOKEN LAUNCHPAD MODAL -->
   <div id="launch-info-modal">
     <span class="modal-close" onclick="toggleTokenModal(false)">&times;</span>
-    <h2 style="font-family:var(--font-title); font-size:1.6rem; color:var(--emerald-bright); margin-bottom:12px;">
-      🌿 VIBER GROVE ($GROVE) Token Launch
+    <h2 style="font-family:var(--font-title); font-size:1.5rem; color:var(--emerald-bright); margin-bottom:12px;">
+      🌿 VIBER GROVE ($GROVE) Launch
     </h2>
-    <p style="font-size:0.88rem; color:#a7f3d0; margin-bottom:18px;">
-      Built for the <b>vibe/vibe Testnet Builder Leaderboard</b> (1.50% Product allocation) on Robinhood Chain L2.
+    <p style="font-size:0.88rem; color:#a7f3d0; margin-bottom:16px;">
+      Built for the <b>vibe/vibe Testnet Builder Leaderboard</b> on Robinhood Chain L2.
     </p>
 
-    <div class="modal-step">
-      <div class="step-num">1</div>
-      <div>
-        <b>Get Testnet ETH:</b> Connect to Robinhood Testnet (Chain ID <code>46630</code>) and request gas funds from <a href="https://faucet.testnet.chain.robinhood.com" target="_blank" style="color:var(--emerald-bright)">Robinhood Faucet</a>.
-      </div>
+    <div style="background:rgba(0,0,0,0.45); padding:10px 14px; border-radius:8px; margin-bottom:16px; font-family:var(--font-mono); font-size:0.75rem; border:1px solid rgba(52,211,153,0.2);">
+      Name: <b>Viber Grove</b><br>
+      Ticker: <b>GROVE</b><br>
+      Website: <b>https://stfu911.github.io/viber-clash/</b><br>
+      Chain ID: <b>46630 (Robinhood Testnet)</b><br>
+      Curve Target: <b>4.00 ETH to Uniswap V4</b>
     </div>
 
-    <div class="modal-step">
-      <div class="step-num">2</div>
-      <div>
-        <b>Deploy Token on vibe/vibe:</b> Head to <a href="https://testnet.vibevibe.fun/" target="_blank" style="color:var(--emerald-bright)">testnet.vibevibe.fun</a>. Click <b>"Create Token"</b>.
-        <div style="background:rgba(0,0,0,0.45); padding:10px 14px; border-radius:8px; margin-top:6px; font-family:var(--font-mono); font-size:0.75rem; border:1px solid rgba(52,211,153,0.2);">
-          Name: <b>Viber Grove</b><br>
-          Ticker: <b>GROVE</b><br>
-          Website: <b>https://stfu911.github.io/viber-clash/</b><br>
-          Twitter: <i>(Your X handle)</i><br>
-          Logo: <i>(Use logo.jpg from repository)</i>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal-step">
-      <div class="step-num">3</div>
-      <div>
-        <b>Bonding Curve Target:</b> Collect 4.00 ETH testnet volume to reach 100% curve graduation into Uniswap V4.
-      </div>
-    </div>
-
-    <div style="margin-top:20px; text-align:center;">
-      <a href="https://testnet.vibevibe.fun/" target="_blank" class="btn btn-forest" style="width:100%;">
-        🍃 Open vibe/vibe Token Launchpad
-      </a>
-    </div>
+    <a href="https://testnet.vibevibe.fun/" target="_blank" class="btn btn-forest" style="width:100%;">
+      🍃 Open vibe/vibe Token Launchpad
+    </a>
   </div>
 
   <script>
     /* ==========================================================
-       MYSTICAL SOUND SYNTHESIZER (Flute, Chime, Stone Resonance)
+       ONLINE DATABASE (Live Global Leaderboard)
+       ========================================================== */
+    const DB_OBJECT_URL = 'https://api.restful-api.dev/objects/ff808181a09d98f701a1060b4e787192';
+    let globalScores = [];
+    let currentPlayerUsername = '';
+
+    // Initialize username from localStorage
+    function initUser() {
+      const stored = localStorage.getItem('viber_grove_x_user');
+      const input = document.getElementById('x-username-input');
+      if (stored) {
+        currentPlayerUsername = stored;
+        input.value = stored.replace('@', '');
+        document.getElementById('player-display-tag').innerText = stored;
+      }
+      fetchLiveLeaderboard();
+    }
+
+    async function fetchLiveLeaderboard() {
+      try {
+        const res = await fetch(DB_OBJECT_URL);
+        const data = await res.json();
+        if (data && data.data && Array.isArray(data.data.scores)) {
+          globalScores = data.data.scores;
+          renderLeaderboardUI();
+          return;
+        }
+      } catch (err) {
+        console.warn('Online DB fetch failed, using local backup:', err);
+      }
+
+      // Fallback local
+      const local = localStorage.getItem('viber_grove_local_scores');
+      if (local) {
+        globalScores = JSON.parse(local);
+      } else {
+        globalScores = [
+          { username: '@Raven_Quant', score: 98400 },
+          { username: '@RobinhoodElder', score: 72100 },
+          { username: '@AncientGrove', score: 54600 },
+          { username: '@SporeWarden', score: 38200 },
+          { username: '@ForestDruid', score: 21500 }
+        ];
+      }
+      renderLeaderboardUI();
+    }
+
+    async function submitScoreToDatabase(username, score) {
+      const statusEl = document.getElementById('submission-status');
+      if (statusEl) statusEl.innerText = 'Connecting to live database...';
+
+      // Clean username
+      const cleanUser = username.startsWith('@') ? username : `@${username}`;
+
+      // Refresh list first
+      let currentList = globalScores;
+      try {
+        const res = await fetch(DB_OBJECT_URL);
+        const json = await res.json();
+        if (json && json.data && Array.isArray(json.data.scores)) {
+          currentList = json.data.scores;
+        }
+      } catch (e) {}
+
+      // Find if user already exists
+      const existingIdx = currentList.findIndex(item => item.username.toLowerCase() === cleanUser.toLowerCase());
+      if (existingIdx !== -1) {
+        if (score > currentList[existingIdx].score) {
+          currentList[existingIdx].score = score;
+        }
+      } else {
+        currentList.push({ username: cleanUser, score });
+      }
+
+      // Sort descending
+      currentList.sort((a, b) => b.score - a.score);
+      // Keep top 25
+      const topList = currentList.slice(0, 25);
+      globalScores = topList;
+      localStorage.setItem('viber_grove_local_scores', JSON.stringify(topList));
+      renderLeaderboardUI();
+
+      // Push to cloud database
+      try {
+        await fetch(DB_OBJECT_URL, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: 'viber_grove_leaderboard',
+            data: { scores: topList }
+          })
+        });
+        if (statusEl) statusEl.innerText = '✅ Score verified on global leaderboard!';
+      } catch (err) {
+        console.error('Failed to sync to cloud DB:', err);
+        if (statusEl) statusEl.innerText = 'Saved locally (offline mode)';
+      }
+    }
+
+    function renderLeaderboardUI() {
+      const formatHtml = list => list.map((item, idx) => {
+        let rankClass = idx === 0 ? 'top1' : (idx === 1 ? 'top2' : (idx === 2 ? 'top3' : ''));
+        let isMe = currentPlayerUsername && item.username.toLowerCase() === currentPlayerUsername.toLowerCase();
+        return `
+          <div class="leaderboard-row ${isMe ? 'highlight' : ''}">
+            <span class="rank ${rankClass}">#${idx + 1}</span>
+            <span class="user-tag">${item.username}</span>
+            <span class="pts">${item.score.toLocaleString()} PTS</span>
+          </div>
+        `;
+      }).join('');
+
+      const box1 = document.getElementById('leaderboard-box');
+      if (box1) box1.innerHTML = formatHtml(globalScores);
+
+      const box2 = document.getElementById('modal-leaderboard-box');
+      if (box2) box2.innerHTML = formatHtml(globalScores);
+    }
+
+    function openGlobalLeaderboard() {
+      fetchLiveLeaderboard();
+      document.getElementById('global-lb-modal').classList.add('active');
+    }
+
+    function closeGlobalLeaderboard() {
+      document.getElementById('global-lb-modal').classList.remove('active');
+    }
+
+    function handleEnterGame() {
+      const input = document.getElementById('x-username-input');
+      let val = input.value.trim().replace(/^@+/, '');
+      if (!val) {
+        input.style.border = '2px solid #f43f5e';
+        input.focus();
+        return;
+      }
+      currentPlayerUsername = `@${val}`;
+      localStorage.setItem('viber_grove_x_user', currentPlayerUsername);
+      document.getElementById('player-display-tag').innerText = currentPlayerUsername;
+
+      // Submit entry to database
+      submitScoreToDatabase(currentPlayerUsername, 0);
+
+      startGame();
+    }
+
+    /* ==========================================================
+       MYSTICAL SOUND SYNTHESIZER
        ========================================================== */
     const AudioCtx = window.AudioContext || window.webkitAudioContext;
     let audioCtx = null;
@@ -725,7 +995,6 @@
       gain.connect(audioCtx.destination);
 
       if (type === 'spore') {
-        // Wooden wind flute tone
         osc.type = 'sine';
         osc.frequency.setValueAtTime(520, t);
         osc.frequency.exponentialRampToValueAtTime(260, t + 0.14);
@@ -734,34 +1003,30 @@
         osc.start(t);
         osc.stop(t + 0.14);
       } else if (type === 'hit') {
-        // Deep wood bark impact
         osc.type = 'triangle';
         osc.frequency.setValueAtTime(160, t);
         osc.frequency.exponentialRampToValueAtTime(50, t + 0.12);
-        gain.gain.setValueAtTime(0.25, t);
+        gain.gain.setValueAtTime(0.22, t);
         gain.gain.linearRampToValueAtTime(0.01, t + 0.12);
         osc.start(t);
         osc.stop(t + 0.12);
       } else if (type === 'purify') {
-        // Ethereal bell resonance
         osc.type = 'sine';
         osc.frequency.setValueAtTime(320, t);
         osc.frequency.exponentialRampToValueAtTime(70, t + 0.3);
-        gain.gain.setValueAtTime(0.28, t);
+        gain.gain.setValueAtTime(0.25, t);
         gain.gain.linearRampToValueAtTime(0.01, t + 0.3);
         osc.start(t);
         osc.stop(t + 0.3);
       } else if (type === 'nectar') {
-        // High fairy chime
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(587.33, t); // D5
-        osc.frequency.linearRampToValueAtTime(880, t + 0.18); // A5
-        gain.gain.setValueAtTime(0.18, t);
+        osc.frequency.setValueAtTime(587.33, t);
+        osc.frequency.linearRampToValueAtTime(880, t + 0.18);
+        gain.gain.setValueAtTime(0.16, t);
         gain.gain.linearRampToValueAtTime(0.01, t + 0.22);
         osc.start(t);
         osc.stop(t + 0.22);
       } else if (type === 'nova') {
-        // Ancient Rune Wind Blast
         osc.type = 'triangle';
         osc.frequency.setValueAtTime(220, t);
         osc.frequency.linearRampToValueAtTime(940, t + 0.4);
@@ -773,17 +1038,19 @@
     }
 
     /* ==========================================================
-       GAME ENGINE & STATE
+       GAME ENGINE & CANVAS
        ========================================================== */
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
 
     let width = 0, height = 0;
     function resize() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight - 64;
+      const container = document.getElementById('game-container');
+      width = canvas.width = container.clientWidth;
+      height = canvas.height = container.clientHeight;
     }
     window.addEventListener('resize', resize);
+    window.addEventListener('orientationchange', () => setTimeout(resize, 150));
     resize();
 
     let gameState = 'START';
@@ -793,11 +1060,12 @@
     let curveEth = 0.00;
     const GRADUATION_TARGET = 4.00;
 
-    // Ambient floating fireflies in the forest
+    // Ambient floating fireflies
     let fireflies = [];
     function initFireflies() {
       fireflies = [];
-      for (let i = 0; i < 45; i++) {
+      const count = width < 600 ? 25 : 45;
+      for (let i = 0; i < count; i++) {
         fireflies.push({
           x: Math.random() * width,
           y: Math.random() * height,
@@ -815,7 +1083,7 @@
     const player = {
       x: 0,
       y: 0,
-      radius: 22,
+      radius: 20,
       speed: 5.5,
       hp: 100,
       maxHp: 100,
@@ -827,6 +1095,7 @@
 
     const keys = {};
     const mouse = { x: 0, y: 0, down: false };
+    let joystickVector = { x: 0, y: 0 };
     let projectiles = [];
     let enemies = [];
     let particles = [];
@@ -842,7 +1111,7 @@
       shakeIntensity = intensity;
     }
 
-    /* INPUT LISTENERS */
+    /* DESKTOP KEYBOARD & MOUSE */
     window.addEventListener('keydown', e => {
       keys[e.key.toLowerCase()] = true;
       if (e.code === 'Space') triggerNova();
@@ -866,41 +1135,93 @@
       if (e.button === 0) mouse.down = false;
     });
 
-    // Touch Support
-    let touchMoveActive = false;
-    const joystickPad = document.getElementById('joystick-pad');
-    const firePad = document.getElementById('fire-pad');
+    /* ==========================================================
+       TOUCH CONTROLS (PHONES & TABLETS)
+       ========================================================== */
+    const joyArea = document.getElementById('joystick-area');
+    const joyKnob = document.getElementById('joystick-knob');
+    let touchJoystickId = null;
+    let joyCenter = { x: 0, y: 0 };
+    const MAX_JOY_DIST = 45;
 
-    joystickPad.addEventListener('touchstart', e => {
-      touchMoveActive = true;
+    joyArea.addEventListener('touchstart', e => {
       e.preventDefault();
-    });
-    joystickPad.addEventListener('touchmove', e => {
-      if (touchMoveActive && e.touches[0]) {
-        const touch = e.touches[0];
-        const rect = joystickPad.getBoundingClientRect();
-        const dx = touch.clientX - (rect.left + rect.width / 2);
-        const dy = touch.clientY - (rect.top + rect.height / 2);
-        keys['a'] = dx < -15;
-        keys['d'] = dx > 15;
-        keys['w'] = dy < -15;
-        keys['s'] = dy > 15;
+      const touch = e.changedTouches[0];
+      touchJoystickId = touch.identifier;
+      const rect = joyArea.getBoundingClientRect();
+      joyCenter = {
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2
+      };
+      updateJoystick(touch.clientX, touch.clientY);
+    }, { passive: false });
+
+    window.addEventListener('touchmove', e => {
+      if (touchJoystickId === null) return;
+      for (let i = 0; i < e.touches.length; i++) {
+        if (e.touches[i].identifier === touchJoystickId) {
+          updateJoystick(e.touches[i].clientX, e.touches[i].clientY);
+          break;
+        }
       }
-      e.preventDefault();
-    });
-    joystickPad.addEventListener('touchend', () => {
-      touchMoveActive = false;
-      keys['a'] = keys['d'] = keys['w'] = keys['s'] = false;
+    }, { passive: false });
+
+    function resetJoystick() {
+      touchJoystickId = null;
+      joystickVector = { x: 0, y: 0 };
+      joyKnob.style.transform = `translate(-50%, -50%)`;
+    }
+
+    window.addEventListener('touchend', e => {
+      if (touchJoystickId !== null) {
+        for (let i = 0; i < e.changedTouches.length; i++) {
+          if (e.changedTouches[i].identifier === touchJoystickId) {
+            resetJoystick();
+            break;
+          }
+        }
+      }
     });
 
-    firePad.addEventListener('touchstart', e => {
-      triggerNova();
-      mouse.down = true;
+    window.addEventListener('touchcancel', resetJoystick);
+
+    function updateJoystick(touchX, touchY) {
+      let dx = touchX - joyCenter.x;
+      let dy = touchY - joyCenter.y;
+      const dist = Math.hypot(dx, dy);
+
+      if (dist > MAX_JOY_DIST) {
+        dx = (dx / dist) * MAX_JOY_DIST;
+        dy = (dy / dist) * MAX_JOY_DIST;
+      }
+
+      joyKnob.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px))`;
+      joystickVector = {
+        x: dx / MAX_JOY_DIST,
+        y: dy / MAX_JOY_DIST
+      };
+    }
+
+    // Touch Action Buttons
+    const btnTouchSpore = document.getElementById('btn-touch-spore');
+    const btnTouchNova = document.getElementById('btn-touch-nova');
+
+    btnTouchSpore.addEventListener('touchstart', e => {
       e.preventDefault();
-    });
-    firePad.addEventListener('touchend', () => {
+      mouse.down = true;
+      initAudio();
+    }, { passive: false });
+
+    btnTouchSpore.addEventListener('touchend', e => {
+      e.preventDefault();
       mouse.down = false;
     });
+
+    btnTouchNova.addEventListener('touchstart', e => {
+      e.preventDefault();
+      initAudio();
+      triggerNova();
+    }, { passive: false });
 
     /* ==========================================================
        SPAWNING & WAVES
@@ -949,18 +1270,18 @@
       let enemy = {
         x: ex,
         y: ey,
-        radius: isBoss ? 48 : 17,
-        hp: isBoss ? 240 + wave * 45 : 28 + wave * 6,
-        maxHp: isBoss ? 240 + wave * 45 : 28 + wave * 6,
-        speed: isBoss ? 1.7 : 2.1 + Math.random() * 1.4,
+        radius: isBoss ? 45 : 16,
+        hp: isBoss ? 230 + wave * 45 : 26 + wave * 6,
+        maxHp: isBoss ? 230 + wave * 45 : 26 + wave * 6,
+        speed: isBoss ? 1.6 : 2.1 + Math.random() * 1.3,
         type: isBoss ? 'boss' : (typeRoll > 0.7 ? 'speeder' : 'standard'),
         color: isBoss ? '#f43f5e' : (typeRoll > 0.7 ? '#c084fc' : '#b45309')
       };
 
       if (enemy.type === 'speeder') {
-        enemy.radius = 13;
-        enemy.speed = 4.1;
-        enemy.hp = 18 + wave * 3;
+        enemy.radius = 12;
+        enemy.speed = 4.0;
+        enemy.hp = 16 + wave * 3;
       }
 
       enemies.push(enemy);
@@ -982,11 +1303,10 @@
     function triggerNova() {
       if (!player.empReady || gameState !== 'PLAYING') return;
       player.empReady = false;
-      player.empCooldown = 340;
+      player.empCooldown = 320;
       playSound('nova');
       addShake(16, 12);
 
-      // Expanding golden rune petals
       for (let i = 0; i < 48; i++) {
         const ang = (Math.PI * 2 / 48) * i;
         particles.push({
@@ -994,14 +1314,13 @@
           y: player.y,
           vx: Math.cos(ang) * 9.5,
           vy: Math.sin(ang) * 9.5,
-          radius: 4.5,
+          radius: 4,
           color: i % 2 === 0 ? '#34d399' : '#fbbf24',
           life: 35,
           maxLife: 35
         });
       }
 
-      // Damage all enemies
       enemies.forEach(e => {
         e.hp -= 75;
         createFloatingText(e.x, e.y, '🌸 PURIFIED -75', '#34d399');
@@ -1009,7 +1328,7 @@
     }
 
     function createFloatingText(x, y, text, color) {
-      floatingTexts.push({ x, y, text, color, life: 45 });
+      floatingTexts.push({ x, y, text, color, life: 42 });
     }
 
     /* ==========================================================
@@ -1018,7 +1337,7 @@
     let lastShootTime = 0;
 
     function update() {
-      // Ambient fireflies drift
+      // Fireflies drift
       fireflies.forEach(f => {
         f.x += f.vx;
         f.y += f.vy;
@@ -1031,42 +1350,61 @@
 
       if (gameState !== 'PLAYING') return;
 
-      // Player Movement
-      let dx = 0, dy = 0;
-      if (keys['w'] || keys['arrowup']) dy -= 1;
-      if (keys['s'] || keys['arrowdown']) dy += 1;
-      if (keys['a'] || keys['arrowleft']) dx -= 1;
-      if (keys['d'] || keys['arrowright']) dx += 1;
+      // Player Movement: Combine Keyboard + Touch Joystick
+      let mx = 0, my = 0;
+      if (keys['w'] || keys['arrowup']) my -= 1;
+      if (keys['s'] || keys['arrowdown']) my += 1;
+      if (keys['a'] || keys['arrowleft']) mx -= 1;
+      if (keys['d'] || keys['arrowright']) mx += 1;
 
-      if (dx !== 0 && dy !== 0) {
-        dx *= 0.7071;
-        dy *= 0.7071;
+      // Add touch joystick input
+      mx += joystickVector.x;
+      my += joystickVector.y;
+
+      const len = Math.hypot(mx, my);
+      if (len > 1) {
+        mx /= len;
+        my /= len;
       }
 
-      player.x = Math.max(player.radius, Math.min(width - player.radius, player.x + dx * player.speed));
-      player.y = Math.max(player.radius, Math.min(height - player.radius, player.y + dy * player.speed));
+      player.x = Math.max(player.radius, Math.min(width - player.radius, player.x + mx * player.speed));
+      player.y = Math.max(player.radius, Math.min(height - player.radius, player.y + my * player.speed));
 
-      // Leaf trails
-      if (dx !== 0 || dy !== 0) {
-        if (Math.random() < 0.3) {
-          particles.push({
-            x: player.x,
-            y: player.y,
-            vx: -dx * 1.5 + (Math.random() - 0.5),
-            vy: -dy * 1.5 + (Math.random() - 0.5),
-            radius: Math.random() * 3 + 1.5,
-            color: '#10b981',
-            life: 20, maxLife: 20
-          });
+      // Leaf particle trail
+      if (len > 0.2 && Math.random() < 0.3) {
+        particles.push({
+          x: player.x,
+          y: player.y,
+          vx: -mx * 1.5 + (Math.random() - 0.5),
+          vy: -my * 1.5 + (Math.random() - 0.5),
+          radius: Math.random() * 2.8 + 1.2,
+          color: '#10b981',
+          life: 18, maxLife: 18
+        });
+      }
+
+      // Auto-aim at closest enemy on touch, or follow mouse on desktop
+      if (enemies.length > 0 && Math.abs(joystickVector.x) > 0 || Math.abs(joystickVector.y) > 0 || !mouse.down) {
+        let closest = null;
+        let minDist = 99999;
+        enemies.forEach(e => {
+          const d = Math.hypot(e.x - player.x, e.y - player.y);
+          if (d < minDist) {
+            minDist = d;
+            closest = e;
+          }
+        });
+        if (closest) {
+          player.angle = Math.atan2(closest.y - player.y, closest.x - player.x);
         }
+      } else {
+        player.angle = Math.atan2(mouse.y - player.y, mouse.x - player.x);
       }
 
-      // Aiming
-      player.angle = Math.atan2(mouse.y - player.y, mouse.x - player.x);
-
-      // Spore Blast Shooting
+      // Spore Shoot (continuous while mouse/touch down, or auto-fire near enemies)
       const now = performance.now();
-      if ((mouse.down || keys[' ']) && now - lastShootTime > 135) {
+      const shouldShoot = mouse.down || (touchJoystickId !== null && enemies.length > 0);
+      if (shouldShoot && now - lastShootTime > 135) {
         lastShootTime = now;
         playSound('spore');
         projectiles.push({
@@ -1106,15 +1444,14 @@
             playSound('hit');
             projectiles.splice(i, 1);
 
-            // Spore splatter
-            for (let k = 0; k < 6; k++) {
+            for (let k = 0; k < 5; k++) {
               particles.push({
                 x: p.x, y: p.y,
                 vx: (Math.random() - 0.5) * 5,
                 vy: (Math.random() - 0.5) * 5,
-                radius: 2.5,
+                radius: 2.2,
                 color: e.color,
-                life: 18, maxLife: 18
+                life: 16, maxLife: 16
               });
             }
             break;
@@ -1136,20 +1473,19 @@
         e.x += Math.cos(ang) * e.speed;
         e.y += Math.sin(ang) * e.speed;
 
-        // Collision with player
         const dist = Math.hypot(player.x - e.x, player.y - e.y);
         if (dist < player.radius + e.radius) {
           addShake(9, 7);
           playSound('hit');
 
-          let dmg = e.type === 'boss' ? 26 : 13;
+          let dmg = e.type === 'boss' ? 25 : 12;
           if (player.shield > 0) {
             player.shield = Math.max(0, player.shield - dmg);
           } else {
             player.hp = Math.max(0, player.hp - dmg);
           }
 
-          createFloatingText(player.x, player.y, `-${dmg} ESSENCE`, '#f43f5e');
+          createFloatingText(player.x, player.y, `-${dmg} HP`, '#f43f5e');
 
           if (e.type !== 'boss') enemies.splice(i, 1);
 
@@ -1160,20 +1496,19 @@
           continue;
         }
 
-        // Enemy Cleansed
+        // Cleansed
         if (e.hp <= 0) {
           playSound('purify');
           addShake(5, 4);
 
-          // Ethereal leaf & firefly burst
-          for (let k = 0; k < 20; k++) {
+          for (let k = 0; k < 18; k++) {
             particles.push({
               x: e.x, y: e.y,
               vx: (Math.random() - 0.5) * 8,
               vy: (Math.random() - 0.5) * 8,
-              radius: Math.random() * 3.5 + 1.5,
+              radius: Math.random() * 3.5 + 1.2,
               color: Math.random() > 0.5 ? '#34d399' : '#fbbf24',
-              life: 28, maxLife: 28
+              life: 25, maxLife: 25
             });
           }
 
@@ -1210,10 +1545,10 @@
             createFloatingText(item.x, item.y, '+35 ESSENCE', '#34d399');
           } else if (item.type === 'barkskin') {
             player.shield = 100;
-            createFloatingText(item.x, item.y, 'BARKSKIN WARD', '#fbbf24');
+            createFloatingText(item.x, item.y, 'BARKSKIN RESTORED', '#fbbf24');
           } else if (item.type === 'nova') {
             player.empReady = true;
-            createFloatingText(item.x, item.y, 'SYLVAN NOVA READY', '#c084fc');
+            createFloatingText(item.x, item.y, 'NOVA READY', '#c084fc');
           } else if (item.type === 'sap') {
             curveEth = Math.min(GRADUATION_TARGET, curveEth + 0.25);
             createFloatingText(item.x, item.y, '+0.25 ETH SACRED SAP', '#fbbf24');
@@ -1239,22 +1574,21 @@
         if (f.life <= 0) floatingTexts.splice(i, 1);
       }
 
-      // Update UI
+      // Update HUD
       document.getElementById('hp-bar').style.width = (player.hp / player.maxHp * 100) + '%';
       document.getElementById('hp-text').innerText = `${Math.ceil(player.hp)} / ${player.maxHp}`;
-      document.getElementById('shield-text').innerText = `🛡️ ${Math.ceil(player.shield)}% BARKSKIN`;
+      document.getElementById('shield-text').innerText = `🛡️ ${Math.ceil(player.shield)}%`;
       document.getElementById('score-val').innerText = score.toLocaleString();
       document.getElementById('curve-val').innerText = `${curveEth.toFixed(2)} / ${GRADUATION_TARGET.toFixed(2)} ETH`;
       document.getElementById('curve-fill').style.width = ((curveEth / GRADUATION_TARGET) * 100) + '%';
     }
 
     /* ==========================================================
-       RENDER CANVAS - ENCHANTED FOREST GROVE
+       RENDER CANVAS
        ========================================================== */
     function render() {
       ctx.save();
 
-      // Screen Shake
       if (shakeDuration > 0) {
         shakeDuration--;
         const ox = (Math.random() - 0.5) * shakeIntensity;
@@ -1262,7 +1596,7 @@
         ctx.translate(ox, oy);
       }
 
-      // Deep shadowy forest gradient
+      // Forest gradient
       const bgGrad = ctx.createRadialGradient(width / 2, height / 2, 80, width / 2, height / 2, Math.max(width, height) * 0.7);
       bgGrad.addColorStop(0, '#0c1f15');
       bgGrad.addColorStop(0.6, '#06110a');
@@ -1270,32 +1604,17 @@
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, width, height);
 
-      // Ancient stone rune circles
+      // Celtic stone runes
       ctx.save();
       ctx.translate(width / 2, height / 2);
       ctx.strokeStyle = 'rgba(52, 211, 153, 0.05)';
       ctx.lineWidth = 2;
       ctx.beginPath();
-      ctx.arc(0, 0, 180, 0, Math.PI * 2);
+      ctx.arc(0, 0, Math.min(width, height) * 0.35, 0, Math.PI * 2);
       ctx.stroke();
-
-      ctx.strokeStyle = 'rgba(251, 191, 36, 0.04)';
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.arc(0, 0, 320, 0, Math.PI * 2);
-      ctx.stroke();
-
-      // Subtle ancient Celtic compass markings
-      for (let i = 0; i < 8; i++) {
-        const ang = (Math.PI * 2 / 8) * i;
-        ctx.beginPath();
-        ctx.moveTo(Math.cos(ang) * 160, Math.sin(ang) * 160);
-        ctx.lineTo(Math.cos(ang) * 200, Math.sin(ang) * 200);
-        ctx.stroke();
-      }
       ctx.restore();
 
-      // Ambient glowing fireflies
+      // Fireflies
       fireflies.forEach(f => {
         ctx.save();
         ctx.beginPath();
@@ -1303,17 +1622,17 @@
         ctx.arc(f.x, f.y, pulseSize, 0, Math.PI * 2);
         ctx.fillStyle = f.color;
         ctx.shadowColor = f.color;
-        ctx.shadowBlur = 10;
+        ctx.shadowBlur = 8;
         ctx.globalAlpha = 0.6 + Math.sin(f.pulse) * 0.3;
         ctx.fill();
         ctx.restore();
       });
 
-      // Pickups (Sun Drops, Barkskin, Sacred Sap)
+      // Pickups
       pickups.forEach(item => {
         ctx.save();
         ctx.translate(item.x, item.y);
-        const scale = 1 + Math.sin(item.pulse) * 0.18;
+        const scale = 1 + Math.sin(item.pulse) * 0.16;
         ctx.scale(scale, scale);
 
         let color = item.type === 'nectar' ? '#34d399' : (item.type === 'barkskin' ? '#fbbf24' : '#c084fc');
@@ -1321,7 +1640,7 @@
         ctx.arc(0, 0, item.radius, 0, Math.PI * 2);
         ctx.fillStyle = color;
         ctx.shadowColor = color;
-        ctx.shadowBlur = 14;
+        ctx.shadowBlur = 12;
         ctx.fill();
 
         ctx.font = 'bold 9px "JetBrains Mono"';
@@ -1332,17 +1651,16 @@
         ctx.restore();
       });
 
-      // Projectiles (Luminescent Spores)
+      // Projectiles
       projectiles.forEach(p => {
         ctx.save();
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
         ctx.shadowColor = p.color;
-        ctx.shadowBlur = 12;
+        ctx.shadowBlur = 10;
         ctx.fill();
 
-        // Inner glowing core
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius * 0.5, 0, Math.PI * 2);
         ctx.fillStyle = '#ffffff';
@@ -1350,19 +1668,17 @@
         ctx.restore();
       });
 
-      // Enemies (Shadow Beasts & Blight Colossus)
+      // Enemies
       enemies.forEach(e => {
         ctx.save();
         ctx.translate(e.x, e.y);
 
-        // Blight corruption ring
         ctx.beginPath();
-        ctx.arc(0, 0, e.radius + 5, 0, (Math.PI * 2) * (e.hp / e.maxHp));
+        ctx.arc(0, 0, e.radius + 4, 0, (Math.PI * 2) * (e.hp / e.maxHp));
         ctx.strokeStyle = e.color;
-        ctx.lineWidth = 2.8;
+        ctx.lineWidth = 2.5;
         ctx.stroke();
 
-        // Dark shadowy body
         ctx.beginPath();
         ctx.arc(0, 0, e.radius, 0, Math.PI * 2);
         ctx.fillStyle = '#0f1712';
@@ -1371,74 +1687,68 @@
         ctx.lineWidth = 2;
         ctx.stroke();
 
-        // Glowing red / purple beast eye
         ctx.beginPath();
         ctx.arc(0, 0, e.radius * 0.45, 0, Math.PI * 2);
         ctx.fillStyle = e.color;
         ctx.shadowColor = e.color;
-        ctx.shadowBlur = 10;
+        ctx.shadowBlur = 8;
         ctx.fill();
 
         ctx.restore();
       });
 
-      // Player: Mythic Forest Spirit Guardian
+      // Player Guardian
       if (gameState === 'PLAYING') {
         ctx.save();
         ctx.translate(player.x, player.y);
+
+        // Player X tag floating above
+        if (currentPlayerUsername) {
+          ctx.font = 'bold 11px "Outfit"';
+          ctx.fillStyle = '#a7f3d0';
+          ctx.textAlign = 'center';
+          ctx.fillText(currentPlayerUsername, 0, -player.radius - 12);
+        }
+
         ctx.rotate(player.angle);
 
         // Barkskin Shield Aura
         if (player.shield > 0) {
           ctx.beginPath();
-          ctx.arc(0, 0, player.radius + 9, 0, Math.PI * 2);
+          ctx.arc(0, 0, player.radius + 8, 0, Math.PI * 2);
           ctx.strokeStyle = `rgba(251, 191, 36, ${player.shield / 100 * 0.75})`;
-          ctx.lineWidth = 2.5;
-          ctx.shadowColor = '#fbbf24';
-          ctx.shadowBlur = 12;
+          ctx.lineWidth = 2.2;
           ctx.stroke();
         }
 
-        // Emerald Spirit Core
+        // Core
         ctx.beginPath();
         ctx.arc(0, 0, player.radius, 0, Math.PI * 2);
         ctx.fillStyle = '#082618';
         ctx.fill();
         ctx.strokeStyle = '#34d399';
-        ctx.lineWidth = 3;
+        ctx.lineWidth = 2.8;
         ctx.shadowColor = '#34d399';
-        ctx.shadowBlur = 15;
+        ctx.shadowBlur = 12;
         ctx.stroke();
 
-        // Wooden staff / spore blossom barrel
+        // Wand/Blossom
         ctx.fillStyle = '#b45309';
-        ctx.fillRect(player.radius - 2, -3, 15, 6);
+        ctx.fillRect(player.radius - 2, -3, 14, 6);
         ctx.fillStyle = '#34d399';
         ctx.beginPath();
-        ctx.arc(player.radius + 13, 0, 4, 0, Math.PI * 2);
+        ctx.arc(player.radius + 12, 0, 4, 0, Math.PI * 2);
         ctx.fill();
-
-        // Antler crown accents
-        ctx.strokeStyle = '#a7f3d0';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(-6, -player.radius);
-        ctx.lineTo(-12, -player.radius - 8);
-        ctx.moveTo(6, -player.radius);
-        ctx.lineTo(12, -player.radius - 8);
-        ctx.stroke();
 
         ctx.restore();
       }
 
-      // Particles (Leaves & Spores)
+      // Particles
       particles.forEach(p => {
         ctx.save();
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
-        ctx.shadowColor = p.color;
-        ctx.shadowBlur = 8;
         ctx.globalAlpha = p.life / p.maxLife;
         ctx.fill();
         ctx.restore();
@@ -1447,11 +1757,9 @@
       // Floating Numbers
       floatingTexts.forEach(f => {
         ctx.save();
-        ctx.font = 'bold 13px "JetBrains Mono"';
+        ctx.font = 'bold 12px "JetBrains Mono"';
         ctx.fillStyle = f.color;
-        ctx.shadowColor = f.color;
-        ctx.shadowBlur = 8;
-        ctx.globalAlpha = f.life / 45;
+        ctx.globalAlpha = f.life / 42;
         ctx.fillText(f.text, f.x, f.y);
         ctx.restore();
       });
@@ -1492,49 +1800,18 @@
     function gameOver() {
       gameState = 'GAMEOVER';
       playSound('hit');
-      addShake(22, 16);
+      addShake(20, 16);
 
       document.getElementById('final-score').innerText = score.toLocaleString();
-      saveHighScore(score);
-      renderLeaderboard();
+      document.getElementById('gameover-msg').innerText = `${currentPlayerUsername}'s sacred harvest is being recorded.`;
       document.getElementById('gameover-overlay').classList.remove('hidden');
+
+      // Submit to real live cloud database!
+      submitScoreToDatabase(currentPlayerUsername, score);
     }
 
     function restartGame() {
       startGame();
-    }
-
-    /* LEADERBOARD */
-    function getHighScores() {
-      const stored = localStorage.getItem('viber_grove_scores');
-      if (stored) return JSON.parse(stored);
-      return [
-        { name: "Sylvan_Raven", score: 98400 },
-        { name: "RobinhoodElder", score: 72100 },
-        { name: "AncientGrove_46630", score: 54600 },
-        { name: "SporeWarden", score: 38200 },
-        { name: "ForestDruid", score: 21500 }
-      ];
-    }
-
-    function saveHighScore(newScore) {
-      let list = getHighScores();
-      list.push({ name: "You (Forest Guardian)", score: newScore });
-      list.sort((a, b) => b.score - a.score);
-      list = list.slice(0, 5);
-      localStorage.setItem('viber_grove_scores', JSON.stringify(list));
-    }
-
-    function renderLeaderboard() {
-      const list = getHighScores();
-      const container = document.getElementById('leaderboard-box');
-      container.innerHTML = list.map((item, idx) => `
-        <div class="leaderboard-row">
-          <span class="rank">#${idx + 1}</span>
-          <span>${item.name}</span>
-          <span style="color:var(--emerald-bright)">${item.score.toLocaleString()} PTS</span>
-        </div>
-      `).join('');
     }
 
     /* WEB3 WALLET CONNECT */
@@ -1551,7 +1828,7 @@
           try {
             await window.ethereum.request({
               method: 'wallet_switchEthereumChain',
-              params: [{ chainId: '0xb626' }] // 46630 hex
+              params: [{ chainId: '0xb626' }]
             });
           } catch (switchError) {
             if (switchError.code === 4902) {
@@ -1583,7 +1860,12 @@
       else modal.classList.remove('active');
     }
 
-    renderLeaderboard();
+    // Auto-enter on Enter key inside username input
+    document.getElementById('x-username-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') handleEnterGame();
+    });
+
+    initUser();
     requestAnimationFrame(render);
   </script>
 </body>
