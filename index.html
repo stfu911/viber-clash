@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>VIBER CLASH · Cyber Quant Battle Arena</title>
+  <link rel="icon" href="logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700;900&family=JetBrains+Mono:wght@400;600;800&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0d0f;
+      --panel: #101519;
+      --panel-border: rgba(0, 255, 170, 0.2);
+      --neon-green: #00ffa3;
+      --neon-cyan: #00e5ff;
+      --neon-red: #ff3366;
+      --neon-gold: #ffd200;
+      --neon-purple: #b537f2;
+      --font-display: 'Chakra Petch', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-body: 'Outfit', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: #e5f0f5;
+      font-family: var(--font-body);
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* TOP BAR */
+    header {
+      height: 60px;
+      background: rgba(16, 21, 25, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--panel-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 100;
+      flex-shrink: 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 2px solid var(--neon-green);
+      box-shadow: 0 0 10px rgba(0, 255, 163, 0.4);
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.25rem;
+      letter-spacing: 1.5px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-title span {
+      color: var(--neon-green);
+      text-shadow: 0 0 8px rgba(0, 255, 163, 0.5);
+    }
+
+    .badge-testnet {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      background: rgba(0, 229, 255, 0.15);
+      color: var(--neon-cyan);
+      border: 1px solid rgba(0, 229, 255, 0.4);
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      text-decoration: none;
+      border: none;
+      outline: none;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #d0dbe2;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+      box-shadow: 0 0 12px rgba(0, 229, 255, 0.25);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #00ffa3 0%, #00b374 100%);
+      color: #06150e;
+      box-shadow: 0 0 14px rgba(0, 255, 163, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 20px rgba(0, 255, 163, 0.6);
+    }
+
+    .btn-vibe {
+      background: linear-gradient(135deg, #ff007a 0%, #7928ca 100%);
+      color: #fff;
+      box-shadow: 0 0 14px rgba(255, 0, 122, 0.35);
+    }
+
+    .btn-vibe:hover {
+      box-shadow: 0 0 20px rgba(255, 0, 122, 0.6);
+      transform: translateY(-1px);
+    }
+
+    /* MAIN VIEWPORT */
+    #game-container {
+      position: relative;
+      flex: 1;
+      width: 100%;
+      height: calc(100vh - 60px);
+      overflow: hidden;
+      background: #07090b;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* HUD OVERLAY */
+    #hud {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hud-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .stat-card {
+      background: rgba(16, 21, 25, 0.7);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 10px 16px;
+      pointer-events: auto;
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: #8c9fa8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .stat-val {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .health-bar-container {
+      width: 220px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 6px;
+      border: 1px solid rgba(0, 255, 163, 0.3);
+    }
+
+    .health-bar {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #00ffa3, #00e5ff);
+      transition: width 0.15s ease-out;
+      box-shadow: 0 0 10px var(--neon-green);
+    }
+
+    .curve-widget {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .curve-progress-bar {
+      width: 180px;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .curve-fill {
+      height: 100%;
+      width: 25%;
+      background: linear-gradient(90deg, #ffd200, #ff007a);
+      box-shadow: 0 0 8px #ff007a;
+      transition: width 0.2s;
+    }
+
+    /* WAVE ANNOUNCEMENT */
+    #wave-banner {
+      position: absolute;
+      top: 35%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      opacity: 0;
+      pointer-events: none;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 50;
+    }
+
+    #wave-banner.show {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    #wave-banner h2 {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--neon-cyan);
+      text-shadow: 0 0 25px rgba(0, 229, 255, 0.8);
+      letter-spacing: 3px;
+    }
+
+    #wave-banner p {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      color: #ffd200;
+      margin-top: 4px;
+    }
+
+    /* OVERLAYS (START / GAME OVER / MODAL) */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(6, 9, 11, 0.85);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 80;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    .overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .card-modal {
+      background: #101519;
+      border: 1px solid var(--neon-green);
+      box-shadow: 0 0 35px rgba(0, 255, 163, 0.2);
+      border-radius: 14px;
+      max-width: 520px;
+      width: 90%;
+      padding: 32px;
+      text-align: center;
+      position: relative;
+    }
+
+    .modal-hero-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid var(--neon-green);
+      margin: 0 auto 16px;
+      box-shadow: 0 0 20px rgba(0, 255, 163, 0.4);
+      display: block;
+    }
+
+    .card-modal h1 {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .card-modal p {
+      font-size: 0.95rem;
+      color: #9cb1bc;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .controls-hint {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--neon-cyan);
+      margin-bottom: 24px;
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    .leaderboard-list {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 20px;
+      max-height: 150px;
+      overflow-y: auto;
+    }
+
+    .leaderboard-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 10px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .leaderboard-row:last-child {
+      border-bottom: none;
+    }
+
+    .leaderboard-row .rank {
+      color: var(--neon-gold);
+      font-weight: bold;
+    }
+
+    /* VIBE LAUNCH POPUP */
+    #launch-info-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 580px;
+      background: #11161b;
+      border: 1px solid var(--neon-cyan);
+      box-shadow: 0 0 40px rgba(0, 229, 255, 0.3);
+      border-radius: 12px;
+      padding: 28px;
+      z-index: 200;
+      color: #e5f0f5;
+    }
+
+    #launch-info-modal.active {
+      display: block;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      font-size: 1.5rem;
+      color: #798d96;
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      color: #fff;
+    }
+
+    .modal-step {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 14px;
+      align-items: flex-start;
+      font-size: 0.9rem;
+    }
+
+    .step-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--neon-cyan);
+      color: #051419;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      flex-shrink: 0;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+    }
+
+    /* MOBILE JOYSTICK */
+    #mobile-controls {
+      display: none;
+      position: absolute;
+      bottom: 25px;
+      left: 0;
+      right: 0;
+      padding: 0 30px;
+      justify-content: space-between;
+      pointer-events: none;
+      z-index: 60;
+    }
+
+    .touch-btn {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: rgba(0, 255, 163, 0.2);
+      border: 2px solid var(--neon-green);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 0.9rem;
+      pointer-events: auto;
+      touch-action: none;
+      box-shadow: 0 0 15px rgba(0, 255, 163, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 0 12px;
+      }
+      .brand-title {
+        font-size: 1rem;
+      }
+      .brand img {
+        width: 30px;
+        height: 30px;
+      }
+      .badge-testnet {
+        display: none;
+      }
+      .health-bar-container {
+        width: 130px;
+      }
+      .curve-progress-bar {
+        width: 110px;
+      }
+      #mobile-controls {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <header>
+    <div class="brand" onclick="window.open('https://testnet.vibevibe.fun/', '_blank')">
+      <img src="logo.jpg" alt="Viber Clash Logo">
+      <div class="brand-title">VIBER <span>CLASH</span></div>
+      <span class="badge-testnet">Robinhood L2 · 46630</span>
+    </div>
+
+    <div class="header-actions">
+      <button class="btn btn-outline" id="btn-token-info" onclick="toggleTokenModal(true)">
+        🪙 Token Launchpad
+      </button>
+      <a href="https://testnet.vibevibe.fun/" target="_blank" class="btn btn-vibe">
+        🔥 Trade on vibe/vibe
+      </a>
+      <button class="btn btn-primary" id="btn-wallet" onclick="handleWalletConnect()">
+        ⚡ Connect Wallet
+      </button>
+    </div>
+  </header>
+
+  <!-- GAME VIEWPORT -->
+  <div id="game-container">
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- HUD OVERLAY -->
+    <div id="hud">
+      <div class="hud-top">
+        <!-- QUANT STATUS -->
+        <div class="stat-card">
+          <div class="stat-label">VIBER QUANT HP</div>
+          <div class="health-bar-container">
+            <div id="hp-bar" class="health-bar"></div>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-top:5px; font-family:var(--font-mono); font-size:0.75rem;">
+            <span id="hp-text">100 / 100</span>
+            <span id="shield-text" style="color:var(--neon-cyan)">🛡️ 100%</span>
+          </div>
+        </div>
+
+        <!-- SCORE & WAVE -->
+        <div class="stat-card" style="text-align: center;">
+          <div class="stat-label">ARENA BOUNTY</div>
+          <div class="stat-val" id="score-val" style="color:var(--neon-green)">0</div>
+          <div style="font-family:var(--font-mono); font-size:0.75rem; color:#ffd200;">
+            WAVE <span id="wave-num">1</span> · MULTIPLIER <span id="combo-num">x1.0</span>
+          </div>
+        </div>
+
+        <!-- BONDING CURVE PROGRESS -->
+        <div class="stat-card curve-widget">
+          <div class="stat-label">BONDING CURVE GRADUATION</div>
+          <div class="stat-val" id="curve-val" style="font-size:1.1rem; color:var(--neon-gold)">0.00 / 4.00 ETH</div>
+          <div class="curve-progress-bar">
+            <div id="curve-fill" class="curve-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WAVE BANNER -->
+      <div id="wave-banner">
+        <h2 id="wave-title">WAVE 1</h2>
+        <p id="wave-sub">BEAR BOTS INCOMING</p>
+      </div>
+
+      <!-- MOBILE CONTROLS -->
+      <div id="mobile-controls">
+        <div id="joystick-pad" class="touch-btn">MOVE</div>
+        <div id="fire-pad" class="touch-btn" style="border-color:var(--neon-cyan); background:rgba(0, 229, 255, 0.2);">BLAST</div>
+      </div>
+    </div>
+
+    <!-- START SCREEN -->
+    <div id="start-overlay" class="overlay">
+      <div class="card-modal">
+        <img src="logo.jpg" alt="Viber Clash" class="modal-hero-img">
+        <h1>VIBER CLASH</h1>
+        <p>Piloting AI Quant Chef Unit. Obliterate Bear Bots, Rogue Liquidators, and MEV Sandwiches in the Robinhood Chain arena!</p>
+        
+        <div class="controls-hint">
+          ⌨️ <b>DESKTOP:</b> [W,A,S,D] or [Arrows] to Move · [Mouse] to Aim & Auto-Shoot<br>
+          ⚡ <b>SPECIAL:</b> [SPACEBAR] for Quant EMP Blast<br>
+          📱 <b>TOUCH:</b> Left drag to move, right button to blast!
+        </div>
+
+        <button class="btn btn-primary" style="width:100%; padding:14px; font-size:1.1rem;" onclick="startGame()">
+          ⚔️ ENTER THE ARENA
+        </button>
+      </div>
+    </div>
+
+    <!-- GAME OVER SCREEN -->
+    <div id="gameover-overlay" class="overlay hidden">
+      <div class="card-modal">
+        <h1 style="color:var(--neon-red)">POSITION LIQUIDATED!</h1>
+        <p>Your Viber Quant Bot went down in battle. Harvested yield recorded on Robinhood Testnet.</p>
+        
+        <div class="stat-card" style="margin-bottom: 20px;">
+          <div class="stat-label">FINAL ARENA SCORE</div>
+          <div class="stat-val" id="final-score" style="color:var(--neon-green)">0</div>
+          <div style="font-family:var(--font-mono); font-size:0.8rem; color:#8c9fa8; margin-top:4px;">
+            TESTNET ETH REWARD CLAIMABLE ON VIBE/VIBE
+          </div>
+        </div>
+
+        <div class="leaderboard-list" id="leaderboard-box">
+          <!-- Populated by JS -->
+        </div>
+
+        <div style="display:flex; gap:12px;">
+          <button class="btn btn-primary" style="flex:1;" onclick="restartGame()">
+            🔄 RE-ENTER ARENA
+          </button>
+          <a href="https://testnet.vibevibe.fun/" target="_blank" class="btn btn-vibe" style="flex:1;">
+            🚀 BUY $VCLASH
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOKEN LAUNCHPAD MODAL -->
+  <div id="launch-info-modal">
+    <span class="modal-close" onclick="toggleTokenModal(false)">&times;</span>
+    <h2 style="font-family:var(--font-display); font-size:1.6rem; color:var(--neon-cyan); margin-bottom:12px;">
+      🚀 VIBER CLASH ($VCLASH) Token Blueprint
+    </h2>
+    <p style="font-size:0.88rem; color:#9cb1bc; margin-bottom:18px;">
+      Created specifically for the <b>vibe/vibe Testnet Builder Leaderboard</b> (1.50% Product allocation) on Robinhood Chain L2.
+    </p>
+
+    <div class="modal-step">
+      <div class="step-num">1</div>
+      <div>
+        <b>Get Testnet ETH:</b> Connect to Robinhood Testnet (Chain ID <code>46630</code>) and request gas funds from <a href="https://faucet.testnet.chain.robinhood.com" target="_blank" style="color:var(--neon-green)">Robinhood Faucet</a>.
+      </div>
+    </div>
+
+    <div class="modal-step">
+      <div class="step-num">2</div>
+      <div>
+        <b>Deploy Token on vibe/vibe:</b> Head to <a href="https://testnet.vibevibe.fun/" target="_blank" style="color:var(--neon-green)">testnet.vibevibe.fun</a>. Click <b>"Create Token"</b>.
+        <div style="background:rgba(0,0,0,0.4); padding:8px 12px; border-radius:6px; margin-top:6px; font-family:var(--font-mono); font-size:0.75rem;">
+          Name: <b>Viber Clash</b><br>
+          Ticker: <b>VCLASH</b><br>
+          Website: <i>(Your live game URL / GitHub Pages)</i><br>
+          Twitter: <i>(Your X handle)</i><br>
+          Logo: <i>(Use logo.jpg from this folder)</i>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-step">
+      <div class="step-num">3</div>
+      <div>
+        <b>Bonding Curve Target:</b> Collect 4.00 ETH testnet volume to reach 100% curve graduation to Uniswap V4.
+      </div>
+    </div>
+
+    <div style="margin-top:20px; text-align:center;">
+      <a href="https://testnet.vibevibe.fun/" target="_blank" class="btn btn-primary" style="width:100%;">
+        ⚡ Open vibe/vibe Token Launchpad
+      </a>
+    </div>
+  </div>
+
+  <script>
+    /* ==========================================================
+       AUDIO SYNTHESIZER (Web Audio API - Zero External Dependencies)
+       ========================================================== */
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new AudioCtx();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function playSound(type) {
+      if (!audioCtx) return;
+      const t = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      if (type === 'laser') {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(800, t);
+        osc.frequency.exponentialRampToValueAtTime(120, t + 0.12);
+        gain.gain.setValueAtTime(0.15, t);
+        gain.gain.linearRampToValueAtTime(0.01, t + 0.12);
+        osc.start(t);
+        osc.stop(t + 0.12);
+      } else if (type === 'hit') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(220, t);
+        osc.frequency.exponentialRampToValueAtTime(40, t + 0.1);
+        gain.gain.setValueAtTime(0.3, t);
+        gain.gain.linearRampToValueAtTime(0.01, t + 0.1);
+        osc.start(t);
+        osc.stop(t + 0.1);
+      } else if (type === 'explode') {
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(150, t);
+        osc.frequency.exponentialRampToValueAtTime(30, t + 0.25);
+        gain.gain.setValueAtTime(0.35, t);
+        gain.gain.linearRampToValueAtTime(0.01, t + 0.25);
+        osc.start(t);
+        osc.stop(t + 0.25);
+      } else if (type === 'powerup') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(440, t);
+        osc.frequency.linearRampToValueAtTime(880, t + 0.15);
+        gain.gain.setValueAtTime(0.2, t);
+        gain.gain.linearRampToValueAtTime(0.01, t + 0.2);
+        osc.start(t);
+        osc.stop(t + 0.2);
+      } else if (type === 'emp') {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(300, t);
+        osc.frequency.linearRampToValueAtTime(1200, t + 0.35);
+        gain.gain.setValueAtTime(0.4, t);
+        gain.gain.linearRampToValueAtTime(0.01, t + 0.4);
+        osc.start(t);
+        osc.stop(t + 0.4);
+      }
+    }
+
+    /* ==========================================================
+       GAME ENGINE & STATE
+       ========================================================== */
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let width = 0, height = 0;
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight - 60;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    let gameState = 'START'; // START, PLAYING, GAMEOVER
+    let score = 0;
+    let wave = 1;
+    let combo = 1;
+    let comboTimer = 0;
+    let curveEth = 0.00;
+    const GRADUATION_TARGET = 4.00;
+
+    // Player
+    const player = {
+      x: 0,
+      y: 0,
+      radius: 20,
+      speed: 5.5,
+      hp: 100,
+      maxHp: 100,
+      shield: 100,
+      empReady: true,
+      empCooldown: 0,
+      angle: 0
+    };
+
+    const keys = {};
+    const mouse = { x: 0, y: 0, down: false };
+    let projectiles = [];
+    let enemies = [];
+    let particles = [];
+    let pickups = [];
+    let floatingTexts = [];
+
+    // Screen Shake
+    let shakeDuration = 0;
+    let shakeIntensity = 0;
+
+    function addShake(duration, intensity) {
+      shakeDuration = duration;
+      shakeIntensity = intensity;
+    }
+
+    /* INPUT LISTENERS */
+    window.addEventListener('keydown', e => {
+      keys[e.key.toLowerCase()] = true;
+      if (e.code === 'Space') {
+        triggerEMP();
+      }
+    });
+
+    window.addEventListener('keyup', e => {
+      keys[e.key.toLowerCase()] = false;
+    });
+
+    window.addEventListener('mousemove', e => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+
+    window.addEventListener('mousedown', e => {
+      if (e.button === 0) mouse.down = true;
+    });
+
+    window.addEventListener('mouseup', e => {
+      if (e.button === 0) mouse.down = false;
+    });
+
+    // Touch Support
+    let touchMoveActive = false;
+    const joystickPad = document.getElementById('joystick-pad');
+    const firePad = document.getElementById('fire-pad');
+
+    joystickPad.addEventListener('touchstart', e => {
+      touchMoveActive = true;
+      e.preventDefault();
+    });
+    joystickPad.addEventListener('touchmove', e => {
+      if (touchMoveActive && e.touches[0]) {
+        const touch = e.touches[0];
+        const rect = joystickPad.getBoundingClientRect();
+        const dx = touch.clientX - (rect.left + rect.width / 2);
+        const dy = touch.clientY - (rect.top + rect.height / 2);
+        keys['a'] = dx < -15;
+        keys['d'] = dx > 15;
+        keys['w'] = dy < -15;
+        keys['s'] = dy > 15;
+      }
+      e.preventDefault();
+    });
+    joystickPad.addEventListener('touchend', () => {
+      touchMoveActive = false;
+      keys['a'] = keys['d'] = keys['w'] = keys['s'] = false;
+    });
+
+    firePad.addEventListener('touchstart', e => {
+      triggerEMP();
+      mouse.down = true;
+      e.preventDefault();
+    });
+    firePad.addEventListener('touchend', () => {
+      mouse.down = false;
+    });
+
+    /* ==========================================================
+       SPAWNING & WAVES
+       ========================================================== */
+    let spawnTimer = 0;
+    let enemiesRemainingInWave = 15;
+
+    function startWave(num) {
+      wave = num;
+      enemiesRemainingInWave = 12 + wave * 6;
+      document.getElementById('wave-num').innerText = wave;
+      
+      const banner = document.getElementById('wave-banner');
+      const title = document.getElementById('wave-title');
+      const sub = document.getElementById('wave-sub');
+      
+      title.innerText = `WAVE ${wave}`;
+      if (wave % 5 === 0) {
+        sub.innerText = '🚨 LIQUIDATION WHALE BOSS DETECTED 🚨';
+        sub.style.color = '#ff3366';
+      } else {
+        sub.innerText = `MARKET VOLATILITY: HIGH (${enemiesRemainingInWave} HOSTILES)`;
+        sub.style.color = '#ffd200';
+      }
+
+      banner.classList.add('show');
+      setTimeout(() => banner.classList.remove('show'), 2000);
+    }
+
+    function spawnEnemy() {
+      if (enemiesRemainingInWave <= 0) return;
+      enemiesRemainingInWave--;
+
+      // Position along edge
+      let ex, ey;
+      if (Math.random() < 0.5) {
+        ex = Math.random() < 0.5 ? -30 : width + 30;
+        ey = Math.random() * height;
+      } else {
+        ex = Math.random() * width;
+        ey = Math.random() < 0.5 ? -30 : height + 30;
+      }
+
+      const isBoss = wave % 5 === 0 && enemiesRemainingInWave === 0;
+      const typeRoll = Math.random();
+
+      let enemy = {
+        x: ex,
+        y: ey,
+        radius: isBoss ? 45 : 16,
+        hp: isBoss ? 200 + wave * 40 : 25 + wave * 5,
+        maxHp: isBoss ? 200 + wave * 40 : 25 + wave * 5,
+        speed: isBoss ? 1.8 : 2.2 + Math.random() * 1.5,
+        type: isBoss ? 'boss' : (typeRoll > 0.7 ? 'speeder' : 'standard'),
+        color: isBoss ? '#ff3366' : (typeRoll > 0.7 ? '#00e5ff' : '#ff9900')
+      };
+
+      if (enemy.type === 'speeder') {
+        enemy.radius = 12;
+        enemy.speed = 4.2;
+        enemy.hp = 15 + wave * 3;
+      }
+
+      enemies.push(enemy);
+    }
+
+    function spawnPickup(x, y) {
+      if (Math.random() > 0.28) return;
+      const types = ['heal', 'shield', 'emp', 'curve'];
+      const picked = types[Math.floor(Math.random() * types.length)];
+      pickups.push({
+        x, y,
+        type: picked,
+        radius: 12,
+        duration: 600, // 10s
+        pulse: 0
+      });
+    }
+
+    function triggerEMP() {
+      if (!player.empReady || gameState !== 'PLAYING') return;
+      player.empReady = false;
+      player.empCooldown = 360; // 6s
+      playSound('emp');
+      addShake(15, 12);
+
+      // Flash ring
+      for (let i = 0; i < 40; i++) {
+        const ang = (Math.PI * 2 / 40) * i;
+        particles.push({
+          x: player.x,
+          y: player.y,
+          vx: Math.cos(ang) * 9,
+          vy: Math.sin(ang) * 9,
+          radius: 4,
+          color: '#00e5ff',
+          life: 30,
+          maxLife: 30
+        });
+      }
+
+      // Damage all enemies
+      enemies.forEach(e => {
+        e.hp -= 70;
+        createFloatingText(e.x, e.y, '⚡ CRIT -70', '#00e5ff');
+      });
+    }
+
+    function createFloatingText(x, y, text, color) {
+      floatingTexts.push({ x, y, text, color, life: 40 });
+    }
+
+    /* ==========================================================
+       GAME LOOP & LOGIC
+       ========================================================== */
+    let lastShootTime = 0;
+
+    function update() {
+      if (gameState !== 'PLAYING') return;
+
+      // Player Movement
+      let dx = 0, dy = 0;
+      if (keys['w'] || keys['arrowup']) dy -= 1;
+      if (keys['s'] || keys['arrowdown']) dy += 1;
+      if (keys['a'] || keys['arrowleft']) dx -= 1;
+      if (keys['d'] || keys['arrowright']) dx += 1;
+
+      if (dx !== 0 && dy !== 0) {
+        dx *= 0.7071;
+        dy *= 0.7071;
+      }
+
+      player.x = Math.max(player.radius, Math.min(width - player.radius, player.x + dx * player.speed));
+      player.y = Math.max(player.radius, Math.min(height - player.radius, player.y + dy * player.speed));
+
+      // Aiming
+      player.angle = Math.atan2(mouse.y - player.y, mouse.x - player.x);
+
+      // Auto / Continuous Shooting
+      const now = performance.now();
+      if ((mouse.down || keys[' ']) && now - lastShootTime > 130) {
+        lastShootTime = now;
+        playSound('laser');
+        projectiles.push({
+          x: player.x + Math.cos(player.angle) * player.radius,
+          y: player.y + Math.sin(player.angle) * player.radius,
+          vx: Math.cos(player.angle) * 12,
+          vy: Math.sin(player.angle) * 12,
+          radius: 4,
+          color: '#00ffa3',
+          damage: 20
+        });
+      }
+
+      // EMP Cooldown
+      if (!player.empReady) {
+        player.empCooldown--;
+        if (player.empCooldown <= 0) player.empReady = true;
+      }
+
+      // Projectiles
+      for (let i = projectiles.length - 1; i >= 0; i--) {
+        const p = projectiles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > width || p.y < 0 || p.y > height) {
+          projectiles.splice(i, 1);
+          continue;
+        }
+
+        // Hit enemy?
+        for (let j = enemies.length - 1; j >= 0; j--) {
+          const e = enemies[j];
+          const dist = Math.hypot(p.x - e.x, p.y - e.y);
+          if (dist < p.radius + e.radius) {
+            e.hp -= p.damage;
+            playSound('hit');
+            projectiles.splice(i, 1);
+
+            // Particle splatter
+            for (let k = 0; k < 5; k++) {
+              particles.push({
+                x: p.x, y: p.y,
+                vx: (Math.random() - 0.5) * 5,
+                vy: (Math.random() - 0.5) * 5,
+                radius: 2,
+                color: e.color,
+                life: 15, maxLife: 15
+              });
+            }
+            break;
+          }
+        }
+      }
+
+      // Spawner
+      spawnTimer++;
+      if (spawnTimer > Math.max(30, 80 - wave * 4)) {
+        spawnTimer = 0;
+        spawnEnemy();
+      }
+
+      // Enemies
+      for (let i = enemies.length - 1; i >= 0; i--) {
+        const e = enemies[i];
+        const ang = Math.atan2(player.y - e.y, player.x - e.x);
+        e.x += Math.cos(ang) * e.speed;
+        e.y += Math.sin(ang) * e.speed;
+
+        // Collision with player
+        const dist = Math.hypot(player.x - e.x, player.y - e.y);
+        if (dist < player.radius + e.radius) {
+          addShake(8, 6);
+          playSound('hit');
+
+          // Damage player (absorb with shield first)
+          let dmg = e.type === 'boss' ? 25 : 12;
+          if (player.shield > 0) {
+            player.shield = Math.max(0, player.shield - dmg);
+          } else {
+            player.hp = Math.max(0, player.hp - dmg);
+          }
+
+          createFloatingText(player.x, player.y, `-${dmg} HP`, '#ff3366');
+
+          if (e.type !== 'boss') {
+            enemies.splice(i, 1);
+          }
+
+          if (player.hp <= 0) {
+            gameOver();
+            return;
+          }
+          continue;
+        }
+
+        // Enemy Dead
+        if (e.hp <= 0) {
+          playSound('explode');
+          addShake(5, 4);
+
+          // Explosive particle burst
+          for (let k = 0; k < 18; k++) {
+            particles.push({
+              x: e.x, y: e.y,
+              vx: (Math.random() - 0.5) * 8,
+              vy: (Math.random() - 0.5) * 8,
+              radius: Math.random() * 3 + 1,
+              color: e.color,
+              life: 25, maxLife: 25
+            });
+          }
+
+          score += (e.type === 'boss' ? 500 : 50) * combo;
+          curveEth = Math.min(GRADUATION_TARGET, curveEth + (e.type === 'boss' ? 0.35 : 0.04));
+          createFloatingText(e.x, e.y, `+${(e.type === 'boss' ? 500 : 50) * combo}`, '#00ffa3');
+
+          spawnPickup(e.x, e.y);
+          enemies.splice(i, 1);
+        }
+      }
+
+      // Next wave check
+      if (enemiesRemainingInWave <= 0 && enemies.length === 0) {
+        startWave(wave + 1);
+      }
+
+      // Pickups
+      for (let i = pickups.length - 1; i >= 0; i--) {
+        const item = pickups[i];
+        item.duration--;
+        item.pulse += 0.08;
+
+        if (item.duration <= 0) {
+          pickups.splice(i, 1);
+          continue;
+        }
+
+        const dist = Math.hypot(player.x - item.x, player.y - item.y);
+        if (dist < player.radius + item.radius) {
+          playSound('powerup');
+          if (item.type === 'heal') {
+            player.hp = Math.min(player.maxHp, player.hp + 35);
+            createFloatingText(item.x, item.y, '+35 HEALTH', '#00ffa3');
+          } else if (item.type === 'shield') {
+            player.shield = 100;
+            createFloatingText(item.x, item.y, 'SHIELD RESTORED', '#00e5ff');
+          } else if (item.type === 'emp') {
+            player.empReady = true;
+            createFloatingText(item.x, item.y, 'EMP CHARGED', '#b537f2');
+          } else if (item.type === 'curve') {
+            curveEth = Math.min(GRADUATION_TARGET, curveEth + 0.25);
+            createFloatingText(item.x, item.y, '+0.25 ETH LIQUIDITY', '#ffd200');
+          }
+          pickups.splice(i, 1);
+        }
+      }
+
+      // Particles
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life--;
+        if (p.life <= 0) particles.splice(i, 1);
+      }
+
+      // Floating Texts
+      for (let i = floatingTexts.length - 1; i >= 0; i--) {
+        const f = floatingTexts[i];
+        f.y -= 1;
+        f.life--;
+        if (f.life <= 0) floatingTexts.splice(i, 1);
+      }
+
+      // Update UI
+      document.getElementById('hp-bar').style.width = (player.hp / player.maxHp * 100) + '%';
+      document.getElementById('hp-text').innerText = `${Math.ceil(player.hp)} / ${player.maxHp}`;
+      document.getElementById('shield-text').innerText = `🛡️ ${Math.ceil(player.shield)}%`;
+      document.getElementById('score-val').innerText = score.toLocaleString();
+      document.getElementById('curve-val').innerText = `${curveEth.toFixed(2)} / ${GRADUATION_TARGET.toFixed(2)} ETH`;
+      document.getElementById('curve-fill').style.width = ((curveEth / GRADUATION_TARGET) * 100) + '%';
+    }
+
+    /* ==========================================================
+       RENDER CANVAS
+       ========================================================== */
+    let gridOffset = 0;
+
+    function render() {
+      ctx.save();
+
+      // Screen Shake
+      if (shakeDuration > 0) {
+        shakeDuration--;
+        const ox = (Math.random() - 0.5) * shakeIntensity;
+        const oy = (Math.random() - 0.5) * shakeIntensity;
+        ctx.translate(ox, oy);
+      }
+
+      // Dark Cyber Grid Floor
+      ctx.fillStyle = '#07090b';
+      ctx.fillRect(0, 0, width, height);
+
+      gridOffset = (gridOffset + 0.5) % 40;
+      ctx.strokeStyle = 'rgba(0, 255, 163, 0.04)';
+      ctx.lineWidth = 1;
+
+      for (let x = gridOffset; x < width; x += 40) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+      for (let y = gridOffset; y < height; y += 40) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+
+      // Pickups
+      pickups.forEach(item => {
+        ctx.save();
+        ctx.translate(item.x, item.y);
+        const scale = 1 + Math.sin(item.pulse) * 0.15;
+        ctx.scale(scale, scale);
+
+        ctx.beginPath();
+        ctx.arc(0, 0, item.radius, 0, Math.PI * 2);
+        let color = item.type === 'heal' ? '#00ffa3' : (item.type === 'shield' ? '#00e5ff' : '#ffd200');
+        ctx.fillStyle = color;
+        ctx.shadowColor = color;
+        ctx.shadowBlur = 12;
+        ctx.fill();
+
+        ctx.font = '10px "JetBrains Mono"';
+        ctx.fillStyle = '#051216';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(item.type.toUpperCase().slice(0, 3), 0, 1);
+        ctx.restore();
+      });
+
+      // Projectiles
+      projectiles.forEach(p => {
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = 10;
+        ctx.fill();
+        ctx.restore();
+      });
+
+      // Enemies
+      enemies.forEach(e => {
+        ctx.save();
+        ctx.translate(e.x, e.y);
+
+        // Health Ring
+        ctx.beginPath();
+        ctx.arc(0, 0, e.radius + 4, 0, (Math.PI * 2) * (e.hp / e.maxHp));
+        ctx.strokeStyle = e.color;
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+
+        // Body
+        ctx.beginPath();
+        ctx.arc(0, 0, e.radius, 0, Math.PI * 2);
+        ctx.fillStyle = '#141c22';
+        ctx.fill();
+        ctx.strokeStyle = e.color;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Eye / Indicator
+        ctx.beginPath();
+        ctx.arc(0, 0, e.radius * 0.4, 0, Math.PI * 2);
+        ctx.fillStyle = e.color;
+        ctx.shadowColor = e.color;
+        ctx.shadowBlur = 8;
+        ctx.fill();
+
+        ctx.restore();
+      });
+
+      // Player (Cyber Chef Bot)
+      if (gameState === 'PLAYING') {
+        ctx.save();
+        ctx.translate(player.x, player.y);
+        ctx.rotate(player.angle);
+
+        // Shield Glow
+        if (player.shield > 0) {
+          ctx.beginPath();
+          ctx.arc(0, 0, player.radius + 8, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(0, 229, 255, ${player.shield / 100 * 0.6})`;
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        }
+
+        // Body Ring
+        ctx.beginPath();
+        ctx.arc(0, 0, player.radius, 0, Math.PI * 2);
+        ctx.fillStyle = '#0b1619';
+        ctx.fill();
+        ctx.strokeStyle = '#00ffa3';
+        ctx.lineWidth = 3;
+        ctx.shadowColor = '#00ffa3';
+        ctx.shadowBlur = 10;
+        ctx.stroke();
+
+        // Laser Spatula / Weapon Barrel
+        ctx.fillStyle = '#00ffa3';
+        ctx.fillRect(player.radius - 2, -3, 14, 6);
+
+        // Chef visor
+        ctx.fillStyle = '#00e5ff';
+        ctx.fillRect(2, -5, 8, 10);
+
+        ctx.restore();
+      }
+
+      // Particles
+      particles.forEach(p => {
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.life / p.maxLife;
+        ctx.fill();
+        ctx.restore();
+      });
+
+      // Floating Numbers
+      floatingTexts.forEach(f => {
+        ctx.save();
+        ctx.font = 'bold 13px "JetBrains Mono"';
+        ctx.fillStyle = f.color;
+        ctx.shadowColor = f.color;
+        ctx.shadowBlur = 6;
+        ctx.globalAlpha = f.life / 40;
+        ctx.fillText(f.text, f.x, f.y);
+        ctx.restore();
+      });
+
+      ctx.restore();
+      requestAnimationFrame(() => {
+        update();
+        render();
+      });
+    }
+
+    /* ==========================================================
+       GAME LIFECYCLE
+       ========================================================== */
+    function startGame() {
+      initAudio();
+      document.getElementById('start-overlay').classList.add('hidden');
+      document.getElementById('gameover-overlay').classList.add('hidden');
+      
+      gameState = 'PLAYING';
+      score = 0;
+      wave = 1;
+      combo = 1;
+      curveEth = 0.00;
+      player.hp = 100;
+      player.shield = 100;
+      player.x = width / 2;
+      player.y = height / 2;
+      
+      enemies = [];
+      projectiles = [];
+      pickups = [];
+      particles = [];
+
+      startWave(1);
+    }
+
+    function gameOver() {
+      gameState = 'GAMEOVER';
+      playSound('explode');
+      addShake(20, 16);
+
+      document.getElementById('final-score').innerText = score.toLocaleString();
+      saveHighScore(score);
+      renderLeaderboard();
+      document.getElementById('gameover-overlay').classList.remove('hidden');
+    }
+
+    function restartGame() {
+      startGame();
+    }
+
+    /* LEADERBOARD (Local + Mock On-Chain) */
+    function getHighScores() {
+      const stored = localStorage.getItem('viber_clash_scores');
+      if (stored) return JSON.parse(stored);
+      return [
+        { name: "Raven_Quant", score: 84200 },
+        { name: "RobinhoodChef", score: 61500 },
+        { name: "AlphaBot_46630", score: 49800 },
+        { name: "SeedifyWhale", score: 32400 },
+        { name: "DegenPlayer_1", score: 18900 }
+      ];
+    }
+
+    function saveHighScore(newScore) {
+      let list = getHighScores();
+      list.push({ name: "You (Viber Pilot)", score: newScore });
+      list.sort((a, b) => b.score - a.score);
+      list = list.slice(0, 5);
+      localStorage.setItem('viber_clash_scores', JSON.stringify(list));
+    }
+
+    function renderLeaderboard() {
+      const list = getHighScores();
+      const container = document.getElementById('leaderboard-box');
+      container.innerHTML = list.map((item, idx) => `
+        <div class="leaderboard-row">
+          <span class="rank">#${idx + 1}</span>
+          <span>${item.name}</span>
+          <span style="color:var(--neon-green)">${item.score.toLocaleString()} PTS</span>
+        </div>
+      `).join('');
+    }
+
+    /* WEB3 WALLET CONNECT */
+    async function handleWalletConnect() {
+      const btn = document.getElementById('btn-wallet');
+      if (window.ethereum) {
+        try {
+          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+          const addr = accounts[0];
+          btn.innerText = `🟢 ${addr.slice(0, 6)}...${addr.slice(-4)}`;
+          btn.style.background = '#0d281e';
+          btn.style.color = '#00ffa3';
+
+          // Attempt switch to Robinhood Chain Testnet
+          try {
+            await window.ethereum.request({
+              method: 'wallet_switchEthereumChain',
+              params: [{ chainId: '0xb626' }] // 46630 in hex
+            });
+          } catch (switchError) {
+            if (switchError.code === 4902) {
+              await window.ethereum.request({
+                method: 'wallet_addEthereumChain',
+                params: [{
+                  chainId: '0xb626',
+                  chainName: 'Robinhood Chain Testnet',
+                  nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+                  rpcUrls: ['https://rpc.testnet.chain.robinhood.com/rpc'],
+                  blockExplorerUrls: ['https://explorer.testnet.chain.robinhood.com']
+                }]
+              });
+            }
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      } else {
+        btn.innerText = "🟢 0x71F...89b1 (Demo)";
+        btn.style.background = '#0d281e';
+        btn.style.color = '#00ffa3';
+      }
+    }
+
+    function toggleTokenModal(show) {
+      const modal = document.getElementById('launch-info-modal');
+      if (show) modal.classList.add('active');
+      else modal.classList.remove('active');
+    }
+
+    // Kick off animation loop
+    renderLeaderboard();
+    requestAnimationFrame(render);
+  </script>
+</body>
+</html>
